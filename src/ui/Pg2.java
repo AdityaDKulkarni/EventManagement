@@ -1,7 +1,7 @@
 package ui;
 
 import javax.swing.*;
-import global.Globals;
+//import global.Globals;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +14,7 @@ public class Pg2 extends JFrame{
 	JTextField nameField,phoneField,emailField,typeField,dateField,averageNoField,budgetField,toRsField;
 	JButton nextButton;
 	JTextArea addressArea,venueAddressArea;  
-	JLabel nameLabel,addressLabel,phoneLabel,emailLabel,typeLabel,dateLabel,timeingLabel,amToLabel,pmLabel,
+	JLabel nameLabel,addressLabel,phoneLabel,emailLabel,typeLabel,dateLabel,timingLabel,amToLabel,pmLabel,
 	venueLabel,scaleLabel,averageNoLabel,budgetLabel,toRsLabel, errorLabel;
 	JPanel panel;  
 	JComboBox<Integer> amComboBox,pmComboBox;
@@ -31,6 +31,7 @@ public class Pg2 extends JFrame{
 
 		nameLabel=new JLabel("Name");
 		nameLabel.setBounds(60,30,100,20);
+		nameLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		nameField=new JTextField(30);
 		nameField.setBounds(180,30,230,20);
@@ -38,6 +39,7 @@ public class Pg2 extends JFrame{
 
 		addressLabel=new JLabel("Address");
 		addressLabel.setBounds(60,70,100,50);
+		addressLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		addressArea=new JTextArea("  Enter your address",3,7);
 		addressArea.setBounds(180,70,250,75);
@@ -45,6 +47,7 @@ public class Pg2 extends JFrame{
 
 		phoneLabel=new JLabel("Phone No.");
 		phoneLabel.setBounds(510,30,100,20);
+		phoneLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		phoneField=new JTextField(30);
 		phoneField.setBounds(600,30,150,20);
@@ -52,6 +55,7 @@ public class Pg2 extends JFrame{
 
 		emailLabel=new JLabel("Email");
 		emailLabel.setBounds(510,70,70,20); 
+		emailLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		emailField=new JTextField(40);
 		emailField.setBounds(600,70,200,20);
@@ -59,6 +63,7 @@ public class Pg2 extends JFrame{
 
 		typeLabel=new JLabel("Type of Event");
 		typeLabel.setBounds(60,170,150,20); 
+		typeLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		typeField=new JTextField(100);
 		typeField.setBounds(180,170,200,20);
@@ -66,13 +71,15 @@ public class Pg2 extends JFrame{
 
 		dateLabel=new JLabel("Date");
 		dateLabel.setBounds(60,210,150,20);
+		dateLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		dateField=new JTextField(60);
 		dateField.setBounds(180,210,100,20);
 		dateField.setBackground(new Color(245,255,250));
 
-		timeingLabel=new JLabel("Event Timings");
-		timeingLabel.setBounds(60,250,150,20);
+		timingLabel=new JLabel("Event Timings");
+		timingLabel.setBounds(60,250,150,20);
+		timingLabel.setFont(new Font("Arial",Font.BOLD,14));
 		
 		errorLabel = new JLabel();
 		errorLabel.setBackground(Color.WHITE);
@@ -96,8 +103,9 @@ public class Pg2 extends JFrame{
 		amComboBox.setBounds(180,250,50,20);
 		amComboBox.setBackground(new Color(245,255,250));
 
-		amToLabel=new JLabel("AM  to");
-		amToLabel.setBounds(240,250,40,20);
+		amToLabel=new JLabel("AM    to");
+		amToLabel.setBounds(240,250,60,20);
+		amToLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		pmComboBox=new JComboBox<Integer>();
 		pmComboBox.addItem(1);
@@ -112,14 +120,16 @@ public class Pg2 extends JFrame{
 		pmComboBox.addItem(10);
 		pmComboBox.addItem(11);
 		pmComboBox.addItem(12);
-		pmComboBox.setBounds(300,250,50,20);
+		pmComboBox.setBounds(310,250,50,20);
 		pmComboBox.setBackground(new Color(245,255,250));
 
 		pmLabel=new JLabel("PM");
-		pmLabel.setBounds(360,250,20,20); 
+		pmLabel.setBounds(370,250,30,20); 
+		pmLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		venueLabel=new JLabel("Venue");
 		venueLabel.setBounds(60,290,70,20); 
+		venueLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		venueAddressArea=new JTextArea("  Enter the Venue address",3,7);
 		venueAddressArea.setBounds(180,290,300,75);
@@ -127,6 +137,7 @@ public class Pg2 extends JFrame{
 
 		scaleLabel=new JLabel("Scale of Event");
 		scaleLabel.setBounds(60,390,150,20); 
+		scaleLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		scaleComboBox=new JComboBox<String>();
 		scaleComboBox.addItem("Select");
@@ -138,23 +149,26 @@ public class Pg2 extends JFrame{
 
 		averageNoLabel=new JLabel("Average number of people");
 		averageNoLabel.setBounds(60,430,200,20); 
+		averageNoLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		averageNoField=new JTextField(60);
 		averageNoField.setBounds(250,430,100,20);
 		averageNoField.setBackground(new Color(245,255,250));
 
-		budgetLabel=new JLabel("Budget range:     Rs ");
-		budgetLabel.setBounds(60,470,120,20);  
+		budgetLabel=new JLabel("Budget range:     Rs");
+		budgetLabel.setBounds(60,470,140,20);  
+		budgetLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		budgetField=new JTextField(30);
-		budgetField.setBounds(190,470,70,20);
+		budgetField.setBounds(210,470,70,20);
 		budgetField.setBackground(new Color(245,255,250));
 
-		toRsLabel=new JLabel(" to    Rs ");
-		toRsLabel.setBounds(280,470,70,20);
+		toRsLabel=new JLabel(" to    Rs");
+		toRsLabel.setBounds(300,470,60,20);
+		toRsLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		toRsField=new JTextField(30);
-		toRsField.setBounds(340,470,70,20);
+		toRsField.setBounds(380,470,70,20);
 		toRsField.setBackground(new Color(245,255,250));
 
 		cursor=new Cursor(Cursor.HAND_CURSOR);
@@ -165,12 +179,13 @@ public class Pg2 extends JFrame{
 		nextButton.setMnemonic('N');
 		nextButton.setToolTipText("Click Here");
 		nextButton.setCursor(cursor);
+		nextButton.setFont(new Font("Arial",Font.BOLD,14));
 
 		nextButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
+				/*try {
 					eventId = ThreadLocalRandom.current().nextInt(100, 999 + 1);
 					Globals.details.setEventId(eventId);
 					Globals.details.setName(nameField.getText().toString());
@@ -186,7 +201,7 @@ public class Pg2 extends JFrame{
 					Pg4 pg4 = new Pg4();
 				}catch (NumberFormatException e1) {
 					errorLabel.setText("Please fill required fields!");
-				}
+				} */
 			}
 		});
 
@@ -202,7 +217,7 @@ public class Pg2 extends JFrame{
 		panel.add(dateField);
 		panel.add(typeLabel);
 		panel.add(dateLabel);
-		panel.add(timeingLabel);
+		panel.add(timingLabel);
 		panel.add(amToLabel);
 		panel.add(pmLabel);
 		panel.add(amComboBox);
@@ -230,6 +245,6 @@ public class Pg2 extends JFrame{
 	}
 
 	public static void main(String a[]){
-		Globals.pg2 = new Pg2();
+		 new Pg2();
 	}
 }

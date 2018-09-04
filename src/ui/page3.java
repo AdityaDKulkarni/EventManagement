@@ -1,4 +1,4 @@
-//package Design;
+package ui;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
