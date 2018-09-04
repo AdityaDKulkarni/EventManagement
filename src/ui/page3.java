@@ -5,8 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import assets.*;
 import java.io.IOException;
 
 public class page3 extends JFrame {
@@ -115,9 +118,17 @@ public class page3 extends JFrame {
 		btnNext.setFont(new Font("Arial",Font.BOLD,14));
         btnNext.setBounds(250,550,70,20);
 		btnNext.setBackground(new Color(30,180,255));
+		btnNext.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Pg4 name = new Pg4();
+			}
+		});
 		
 		JLabel labelImg1=new JLabel("");
-		Image img=new ImageIcon(this.getClass().getResource("/img1.jpg")).getImage();
+		Image img=new ImageIcon(this.getClass().getResource("/assets/img2.jpg")).getImage();
 		labelImg1.setIcon(new ImageIcon(img));
 		labelImg1.setBounds(500,300,220,150);
 		
@@ -144,6 +155,12 @@ public class page3 extends JFrame {
 		panel.add(btnNext);
 		
 		panel.setBackground(new Color(153,255,255));
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		frame.setVisible(true);
 		
 	}
@@ -151,9 +168,5 @@ public class page3 extends JFrame {
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
-	}
-
-	public static void main(String a[]){
-		 new page3();
 	}
 }

@@ -1,10 +1,12 @@
 package ui;
 
 import javax.swing.*;
-//import global.Globals;
+import global.Globals;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -185,7 +187,7 @@ public class Pg2 extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*try {
+				try {
 					eventId = ThreadLocalRandom.current().nextInt(100, 999 + 1);
 					Globals.details.setEventId(eventId);
 					Globals.details.setName(nameField.getText().toString());
@@ -197,11 +199,11 @@ public class Pg2 extends JFrame{
 					Globals.details.setBudget(budgetField.getText().toString() + toRsField.getText().toString());
 					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
 					Globals.details.setVenue(venueAddressArea.getText().toString());
-
-					Pg4 pg4 = new Pg4();
+					frame.dispose();
+					page3 page3 = new page3();
 				}catch (NumberFormatException e1) {
 					errorLabel.setText("Please fill required fields!");
-				} */
+				} 
 			}
 		});
 
@@ -236,15 +238,17 @@ public class Pg2 extends JFrame{
 		panel.add(errorLabel);
 
 		panel.setBackground(new Color(153,255,255));
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		frame.setVisible(true);
 	}
 
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
-	}
-
-	public static void main(String a[]){
-		 new Pg2();
 	}
 }
