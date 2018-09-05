@@ -20,7 +20,7 @@ public class Page3 extends JFrame {
 	JTextField TextFieldCause,TextFieldAge,TextFieldBudget,TextFieldApprox;
 	JTextArea TextAreaMenu;
 	JComboBox<String> ComboFood;
-	JCheckBox ChkSweets,ChkDrinks,ChkCake;
+	JCheckBox chkSweets,chkDrinks,chkCake;
 	JButton btnNext;
 	
 	public Page3()
@@ -87,20 +87,20 @@ public class Page3 extends JFrame {
 	    lblExtraItem.setFont(new Font("Arial",Font.BOLD,14));
 		lblExtraItem.setBounds(200,370,100,20);
 		
-		ChkSweets=new JCheckBox("Sweets");
-		ChkSweets.setFont(new Font("Arial",Font.BOLD,14));
-		ChkSweets.setBounds(50,410,100,20);
-		ChkSweets.setBackground(new Color(215,255,230));
+		chkSweets=new JCheckBox("Sweets");
+		chkSweets.setFont(new Font("Arial",Font.BOLD,14));
+		chkSweets.setBounds(50,410,100,20);
+		chkSweets.setBackground(new Color(215,255,230));
 		
-		ChkDrinks=new JCheckBox("Drinks");
-		ChkDrinks.setFont(new Font("Arial",Font.BOLD,14));
-		ChkDrinks.setBounds(180,410,100,20);
-		ChkDrinks.setBackground(new Color(215,255,230));
+		chkDrinks=new JCheckBox("Drinks");
+		chkDrinks.setFont(new Font("Arial",Font.BOLD,14));
+		chkDrinks.setBounds(180,410,100,20);
+		chkDrinks.setBackground(new Color(215,255,230));
 		
-		ChkCake=new JCheckBox("Cake");
-		ChkCake.setFont(new Font("Arial",Font.BOLD,14));
-		ChkCake.setBounds(300,410,100,20);
-		ChkCake.setBackground(new Color(215,255,230));
+		chkCake=new JCheckBox("Cake");
+		chkCake.setFont(new Font("Arial",Font.BOLD,14));
+		chkCake.setBounds(300,410,100,20);
+		chkCake.setBackground(new Color(215,255,230));
 		
 		lblApproxCost=new JLabel("Approximate total price:");
 	    lblApproxCost.setFont(new Font("Arial",Font.BOLD,14));
@@ -146,9 +146,9 @@ public class Page3 extends JFrame {
 		panel.add(lblDetail);
 		panel.add(lblMenu);
 		panel.add(lblExtraItem);
-		panel.add(ChkSweets);
-		panel.add(ChkDrinks);
-		panel.add(ChkCake);
+		panel.add(chkSweets);
+		panel.add(chkDrinks);
+		panel.add(chkCake);
 		panel.add(TextAreaMenu);
 		panel.add(TextFieldApprox);
 		panel.add(lblApproxCost);

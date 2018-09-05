@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.*;
 import global.Globals;
+import sql.SQLHelper;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -188,7 +190,7 @@ public class Page2 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					eventId = ThreadLocalRandom.current().nextInt(100, 999 + 1);
+					eventId = ThreadLocalRandom.current().nextInt(1, 100);
 					Globals.details.setEventId(eventId);
 					Globals.details.setName(nameField.getText().toString());
 					Globals.details.setPhone(phoneField.getText().toString());
@@ -199,8 +201,11 @@ public class Page2 extends JFrame{
 					Globals.details.setBudget(budgetField.getText().toString() + toRsField.getText().toString());
 					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
 					Globals.details.setVenue(venueAddressArea.getText().toString());
-					frame.dispose();
-					Page3 page3 = new Page3();
+					
+					SQLHelper.insertCustomer(Globals.details.getName(), Globals.details.getEmail(),
+							Globals.details.getPhone(), Globals.details.getEventId());
+					/*frame.dispose();
+					Page3 page3 = new Page3();*/
 				}catch (NumberFormatException e1) {
 					errorLabel.setText("Please fill required fields!");
 				} 
