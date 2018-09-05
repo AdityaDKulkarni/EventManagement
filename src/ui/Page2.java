@@ -195,17 +195,17 @@ public class Page2 extends JFrame{
 					Globals.details.setName(nameField.getText().toString());
 					Globals.details.setPhone(phoneField.getText().toString());
 					Globals.details.setEmail(emailField.getText().toString());
+					Globals.details.setAddress(addressArea.getText().toString());
 					Globals.details.setTypeOfEvent(typeField.getText().toString());
-					Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
 					Globals.details.setDate(dateField.getText().toString());
-					Globals.details.setBudget(budgetField.getText().toString() + toRsField.getText().toString());
-					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
+					Globals.details.setStartTime(amComboBox.getSelectedItem().toString());
+					Globals.details.setEndTime(pmComboBox.getSelectedItem().toString());
 					Globals.details.setVenue(venueAddressArea.getText().toString());
-					
-					SQLHelper.insertCustomer(Globals.details.getName(), Globals.details.getEmail(),
-							Globals.details.getPhone(), Globals.details.getEventId());
-					/*frame.dispose();
-					Page3 page3 = new Page3();*/
+					Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
+					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
+					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
+					frame.dispose();
+					Page3 page3 = new Page3();
 				}catch (NumberFormatException e1) {
 					errorLabel.setText("Please fill required fields!");
 				} 

@@ -10,30 +10,46 @@ public class SQLHelper {
 
 	public static boolean isConnected;
 	private static Connection connection;
-	
+
 	public static void connect() {
 		try {
-        	Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(Constants.URL, Constants.USERNAME, Constants.PASSWORD);
-            System.out.println("Success");
-            isConnected = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            isConnected = false;
-        }
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection(Constants.URL, Constants.USERNAME, Constants.PASSWORD);
+			System.out.println("Success");
+			isConnected = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			isConnected = false;
+		}
 	}
-	
-	public static void insertCustomer(String name, String email, String phone, int eventId) {
+
+	public static void insertEvent(String date, String venue, String scale, int noOfPpl, int eventId,
+			String purpose, int ageGorup, String startTime, String endTime, String phone, 	String budget,
+			String name, String email) {
 		try {
-			String eventQuery = "insert into EventDetails values('2018-9-20', 'venue', 'scale', 500," + eventId
-					+ ", 'purpose', 50, '13:20', '18:20', '9657217329')";
+			String eventQuery = "insert into EventDetails values('" + date
+					+ "', '" 	+ venue
+					+ "', '" 	+ scale
+					+ "', " 	+ noOfPpl
+					+ "," 		+ eventId
+					+ ", '" 	+ purpose
+					+ "', " 	+ ageGorup
+					+ ", '" 	+ startTime
+					+ "', '" 	+ endTime
+					+ "', '" 	+ phone
+					+ "', '" 	+ budget
+					+"')";
+			
 			System.out.println(eventQuery);
 			PreparedStatement statement1 = (PreparedStatement) connection.prepareStatement(eventQuery);
 			statement1.executeUpdate();
+			
 			String query = "insert into Customer values('" + name
-			+"', '" + email
-			+"', (select eventid from EventDetails where EventDetails.eventid = " + eventId +"),"
-			+ " (select cust_phone from EventDetails where EventDetails.eventid = " + eventId +"));";
+					+"', '" + email
+					+"', (select eventid from EventDetails where EventDetails.eventid = " + eventId
+					+"),"
+					+ " (select cust_phone from EventDetails where EventDetails.eventid = " + eventId
+					+"));";
 			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(query);
 			System.out.println(query);
 			statement.executeUpdate();

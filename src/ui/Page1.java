@@ -20,8 +20,7 @@ public class Page1 {
 	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblGallery,lblBday,lblDance,lblWedding;
     JButton btnManage;
 	
-	Page1()
-	{
+	Page1(){
 	    frame=new JFrame("Stage One");
 		makeFrameFullSize();
 		panel=(JPanel)frame.getContentPane();
