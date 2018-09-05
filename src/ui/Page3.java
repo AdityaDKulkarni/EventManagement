@@ -12,7 +12,7 @@ import java.io.File;
 import assets.*;
 import java.io.IOException;
 
-public class page3 extends JFrame {
+public class Page3 extends JFrame {
 
 	JFrame frame;
 	JPanel panel;  
@@ -23,7 +23,7 @@ public class page3 extends JFrame {
 	JCheckBox ChkSweets,ChkDrinks,ChkCake;
 	JButton btnNext;
 	
-	public page3()
+	public Page3()
 	{
 		frame=new JFrame("Stage Two");
 		makeFrameFullSize();
@@ -123,7 +123,7 @@ public class page3 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				Pg4 name = new Pg4();
+				Page4 name = new Page4();
 			}
 		});
 		

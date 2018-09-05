@@ -7,7 +7,7 @@ import global.Globals;
 import java.awt.*;
 import java.awt.event.*;
 
-class Pg4 implements ActionListener
+class Page4 implements ActionListener
 {
 	private JFrame frame;
 	private JTextField textFieldEntShows;
@@ -17,7 +17,7 @@ class Pg4 implements ActionListener
 
 	JPanel p1;
 
-	Pg4()
+	Page4()
 	{
 
 		frame = new JFrame("Stage four");

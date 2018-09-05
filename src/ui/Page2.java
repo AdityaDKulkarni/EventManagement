@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Pg2 extends JFrame{
+public class Page2 extends JFrame{
 
 	JFrame frame; 
 	JTextField nameField,phoneField,emailField,typeField,dateField,averageNoField,budgetField,toRsField;
@@ -24,7 +24,7 @@ public class Pg2 extends JFrame{
 	Cursor cursor;
 	int eventId;
 
-	public Pg2(){
+	public Page2(){
 
 		frame=new JFrame("Stage One");
 		makeFrameFullSize();
@@ -200,7 +200,7 @@ public class Pg2 extends JFrame{
 					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
 					Globals.details.setVenue(venueAddressArea.getText().toString());
 					frame.dispose();
-					page3 page3 = new page3();
+					Page3 page3 = new Page3();
 				}catch (NumberFormatException e1) {
 					errorLabel.setText("Please fill required fields!");
 				} 

@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.*;
 import assets.*;
+import sql.SQLHelper;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +13,14 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-public class page1 {
+public class Page1 {
 	
 	JFrame frame; 
 	JPanel panel;  
 	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblGallery,lblBday,lblDance,lblWedding;
     JButton btnManage;
 	
-	page1()
+	Page1()
 	{
 	    frame=new JFrame("Stage One");
 		makeFrameFullSize();
@@ -88,8 +90,9 @@ public class page1 {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Pg2 pg2 = new Pg2();
+				Page2 pg2 = new Page2();
 				frame.dispose();
+				SQLHelper.connect();
 			}
 		});
 		panel.setBackground(new Color(153,255,255));
@@ -117,7 +120,7 @@ public class page1 {
 	}
 
 	public static void main(String a[]){
-		 new page1();
+		 new Page1();
 	}
 	
 	
