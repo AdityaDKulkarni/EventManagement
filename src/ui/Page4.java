@@ -33,7 +33,7 @@ class Page4 implements ActionListener
 		JLabel lblDetailsOfEvent = new JLabel("Details of Event");
 		lblDetailsOfEvent.setBounds(316, 22, 190, 14);
 		lblDetailsOfEvent.setFont(new Font("Arial",Font.BOLD,18));
-		frame.getContentPane().add(lblDetailsOfEvent);
+		frame.add(lblDetailsOfEvent);
 
 		JLabel lblTypesOfEntertainment = new JLabel("Types of entertainment shows needed :");
 		lblTypesOfEntertainment.setBounds(40, 55, 295, 20);

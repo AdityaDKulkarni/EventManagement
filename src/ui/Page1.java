@@ -17,18 +17,14 @@ public class Page1 {
 	
 	JFrame frame; 
 	JPanel panel;  
-	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblGallery,lblBday,lblDance,lblWedding;
+	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblBday,lblDance,lblWedding;
     JButton btnManage;
 	
 	Page1(){
-	    frame=new JFrame("Stage One");
+	    frame=new JFrame("Gallery");
 		makeFrameFullSize();
 		panel=(JPanel)frame.getContentPane();
 		panel.setLayout(null);
-		
-		JLabel lblGallery=new JLabel("Our Work Gallery");
-		lblGallery.setBounds(500,15,150,15);
-		lblGallery.setFont(new Font("Arial",Font.BOLD,14));
 		
 		JLabel labelImg2=new JLabel("");
 		Image img2=new ImageIcon(this.getClass().getResource("/assets/img2.jpg")).getImage();
@@ -96,7 +92,6 @@ public class Page1 {
 		});
 		panel.setBackground(new Color(153,255,255));
 		
-		panel.add(lblGallery);
 		panel.add(labelImg2);
 		panel.add(labelImg3);
 		panel.add(labelImg4);
