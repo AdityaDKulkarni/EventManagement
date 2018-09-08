@@ -25,7 +25,7 @@ public class SQLHelper {
 
 	public static void insertEvent(String date, String venue, String scale, int noOfPpl, int eventId,
 			String purpose, int ageGorup, String startTime, String endTime, String phone, 	String budget,
-			String name, String email) {
+			String plateBudget, String preference, String menu, String name, String email) {
 		try {
 			String eventQuery = "insert into EventDetails values('" + date
 					+ "', '" 	+ venue
@@ -39,21 +39,41 @@ public class SQLHelper {
 					+ "', '" 	+ phone
 					+ "', '" 	+ budget
 					+"')";
-			
 			System.out.println(eventQuery);
 			PreparedStatement statement1 = (PreparedStatement) connection.prepareStatement(eventQuery);
 			statement1.executeUpdate();
+			System.out.println("Event Record inserted.");
 			
-			String query = "insert into Customer values('" + name
+			String customerQuery = "insert into Customer values('" + name
 					+"', '" + email
 					+"', (select eventid from EventDetails where EventDetails.eventid = " + eventId
 					+"),"
 					+ " (select cust_phone from EventDetails where EventDetails.eventid = " + eventId
 					+"));";
-			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(query);
-			System.out.println(query);
+			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(customerQuery);
+			System.out.println(customerQuery);
 			statement.executeUpdate();
-			System.out.println("Record inserted.");
+			System.out.println("Cust Record inserted.");
+			
+			String foodQuery = "insert into Food values("
+					+ "(select eventid from EventDetails where EventDetails.eventid = " + eventId
+					+ "),"
+					+ noOfPpl
+					+ ","
+					+ plateBudget
+					+ ","
+					+ "'"
+					+ preference
+					+ "',"
+					+ "'"
+					+ menu
+					+ "');";
+			
+			PreparedStatement statement2 = (PreparedStatement) connection.prepareStatement(foodQuery);
+			System.out.println(foodQuery);
+			statement2.executeUpdate();
+			
+			System.out.println("Food Record inserted.");
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Record insert failed.");

@@ -40,7 +40,7 @@ public class Page3 extends JFrame {
 
 		tfPurposeCause=new JTextField(60);
 		tfPurposeCause.setBounds(300,70,220,20);
-		tfPurposeCause.setFont(new Font("Arial",Font.BOLD,14));
+		tfPurposeCause.setFont(new Font("Arial",Font.PLAIN,14));
 		tfPurposeCause.setBackground(new Color(245,255,250));
 
 		lblAvgAge=new JLabel("Average age group of people");
@@ -49,7 +49,7 @@ public class Page3 extends JFrame {
 
 		tfAge=new JTextField(60);
 		tfAge.setBounds(300,120,90,20);
-		tfAge.setFont(new Font("Arial",Font.BOLD,14));
+		tfAge.setFont(new Font("Arial",Font.PLAIN,14));
 		tfAge.setBackground(new Color(245,255,250));
 
 		lblBudget=new JLabel("Budget per plate:");
@@ -58,7 +58,7 @@ public class Page3 extends JFrame {
 
 		tfBudget=new JTextField(60);
 		tfBudget.setBounds(300,170,90,20);
-		tfBudget.setFont(new Font("Arial",Font.BOLD,14));
+		tfBudget.setFont(new Font("Arial",Font.PLAIN,14));
 		tfBudget.setBackground(new Color(245,255,250));
 
 		lblFoodPrefer=new JLabel("Food preference:");
@@ -79,11 +79,11 @@ public class Page3 extends JFrame {
 		lblMenu.setBounds(50,270,50,20);
 
 		taMenu=new HintTextArea("Enter menu items seperated by comma");
-		taMenu.setFont(new Font("Arial",Font.ITALIC,14));
+		taMenu.setFont(new Font("Arial",Font.PLAIN,14));
 		taMenu.setBounds(300,270,300,70);
 		taMenu.setBackground(new Color(245,255,250));
 
-		btnNext=new JButton("Next");
+		btnNext=new JButton("Finish");
 		btnNext.setMnemonic('N');
 		btnNext.setToolTipText("Click Here");
 		btnNext.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -94,18 +94,24 @@ public class Page3 extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*Globals.details.setPurpose(tfPurposeCause.getText().toString());
-				Globals.details.setAgeGroup(Integer.parseInt(tfAge.getText().toString()));
-				Globals.details.setPlateBudget(tfBudget.getText().toString());
-				Globals.details.setFoodPreference(comboFoodPref.getSelectedItem().toString());
-				Globals.details.setMenu(taMenu.getText().toString());
+				try {
+					Globals.details.setPurpose(tfPurposeCause.getText().toString());
+					Globals.details.setAgeGroup(Integer.parseInt(tfAge.getText().toString()));
+					Globals.details.setPlateBudget(tfBudget.getText().toString());
+					Globals.details.setFoodPreference(comboFoodPref.getSelectedItem().toString());
+					Globals.details.setMenu(taMenu.getText().toString());
 
-				SQLHelper.insertEvent(Globals.details.getDate(), Globals.details.getVenue(), Globals.details.getScale(),
-				Globals.details.getAvgNoOfPeople(), Globals.details.getEventId(), Globals.details.getPurpose(),
-				Globals.details.getAgeGroup(), Globals.details.getStartTime(), Globals.details.getEndTime(), 
-				Globals.details.getPhone(), Globals.details.getBudget(), Globals.details.getName(), Globals.details.getEmail());*/
-				frame.dispose();
-				Page4 name = new Page4();
+					SQLHelper.insertEvent(Globals.details.getDate(), Globals.details.getVenue(), Globals.details.getScale(),
+							Globals.details.getAvgNoOfPeople(), Globals.details.getEventId(), Globals.details.getPurpose(),
+							Globals.details.getAgeGroup(), Globals.details.getStartTime(), Globals.details.getEndTime(), 
+							Globals.details.getPhone(), Globals.details.getBudget(), Globals.details.getPlateBudget(),
+							Globals.details.getFoodPreference(), Globals.details.getMenu(),Globals.details.getName(), Globals.details.getEmail());
+					/*frame.dispose();
+					Page4 name = new Page4();*/
+				}catch(Exception e1) {
+					e1.printStackTrace();
+					/*Page4 name = new Page4();*/
+				}
 			}
 		});
 
@@ -136,7 +142,7 @@ public class Page3 extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
 	}
-	
+
 	/*public static void main(String[] args) {
 		Page3 page3 = new Page3();
 	}*/
