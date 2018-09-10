@@ -39,6 +39,7 @@ public class Page3 extends JFrame {
 		lblCause.setBounds(50,70,200,20);
 
 		tfPurposeCause=new JTextField(60);
+		tfPurposeCause.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tfPurposeCause.setBounds(300,70,220,20);
 		tfPurposeCause.setFont(new Font("Arial",Font.PLAIN,14));
 		tfPurposeCause.setBackground(new Color(245,255,250));
@@ -48,6 +49,7 @@ public class Page3 extends JFrame {
 		lblAvgAge.setBounds(50,120,250,20);
 
 		tfAge=new JTextField(60);
+		tfAge.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tfAge.setBounds(300,120,90,20);
 		tfAge.setFont(new Font("Arial",Font.PLAIN,14));
 		tfAge.setBackground(new Color(245,255,250));
@@ -57,6 +59,7 @@ public class Page3 extends JFrame {
 		lblBudget.setBounds(50,170,150,20);
 
 		tfBudget=new JTextField(60);
+		tfBudget.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tfBudget.setBounds(300,170,90,20);
 		tfBudget.setFont(new Font("Arial",Font.PLAIN,14));
 		tfBudget.setBackground(new Color(245,255,250));
@@ -79,11 +82,12 @@ public class Page3 extends JFrame {
 		lblMenu.setBounds(50,270,50,20);
 
 		taMenu=new HintTextArea("Enter menu items seperated by comma");
+		taMenu.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		taMenu.setFont(new Font("Arial",Font.PLAIN,14));
 		taMenu.setBounds(300,270,300,70);
 		taMenu.setBackground(new Color(245,255,250));
 
-		btnNext=new JButton("Finish");
+		btnNext=new JButton("Next");
 		btnNext.setMnemonic('N');
 		btnNext.setToolTipText("Click Here");
 		btnNext.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -100,14 +104,8 @@ public class Page3 extends JFrame {
 					Globals.details.setPlateBudget(tfBudget.getText().toString());
 					Globals.details.setFoodPreference(comboFoodPref.getSelectedItem().toString());
 					Globals.details.setMenu(taMenu.getText().toString());
-
-					SQLHelper.insertEvent(Globals.details.getDate(), Globals.details.getVenue(), Globals.details.getScale(),
-							Globals.details.getAvgNoOfPeople(), Globals.details.getEventId(), Globals.details.getPurpose(),
-							Globals.details.getAgeGroup(), Globals.details.getStartTime(), Globals.details.getEndTime(), 
-							Globals.details.getPhone(), Globals.details.getBudget(), Globals.details.getPlateBudget(),
-							Globals.details.getFoodPreference(), Globals.details.getMenu(),Globals.details.getName(), Globals.details.getEmail());
-					/*frame.dispose();
-					Page4 name = new Page4();*/
+					frame.dispose();
+					Page4 name = new Page4();
 				}catch(Exception e1) {
 					e1.printStackTrace();
 					/*Page4 name = new Page4();*/

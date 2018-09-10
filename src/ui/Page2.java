@@ -42,6 +42,7 @@ public class Page2 extends JFrame{
 		nameLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		nameField=new JTextField(30);
+		nameField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		nameField.setBounds(300,30,230,20);
 		nameField.setBackground(new Color(245,255,250));
 
@@ -50,6 +51,7 @@ public class Page2 extends JFrame{
 		addressLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		addressArea=new HintTextArea("Enter your address");
+		addressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		addressArea.setBounds(300,70,250,75);
 		addressArea.setBackground(new Color(245,255,250));
 
@@ -58,6 +60,7 @@ public class Page2 extends JFrame{
 		phoneLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		phoneField=new JTextField(30);
+		phoneField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		phoneField.setBounds(690,30,150,20);
 		phoneField.setBackground(new Color(245,255,250));
 
@@ -66,6 +69,7 @@ public class Page2 extends JFrame{
 		emailLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		emailField=new JTextField(40);
+		emailField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		emailField.setBounds(690,70,200,20);
 		emailField.setBackground(new Color(245,255,250));
 
@@ -74,6 +78,7 @@ public class Page2 extends JFrame{
 		typeLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		typeField=new JTextField(100);
+		typeField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		typeField.setBounds(300,170,200,20);
 		typeField.setBackground(new Color(245,255,250));
 
@@ -82,6 +87,7 @@ public class Page2 extends JFrame{
 		dateLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		dateField = new HintTextField("YYYY-MM-DD");
+		dateField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		dateField.setBounds(300,210,100,20);
 		dateField.setBackground(new Color(245,255,250));
 
@@ -125,6 +131,7 @@ public class Page2 extends JFrame{
 		venueLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		venueAddressArea=new HintTextArea("Enter the Venue address");
+		venueAddressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		venueAddressArea.setBounds(300,290,300,75);
 		venueAddressArea.setBackground(new Color(245,255,250));
 
@@ -145,6 +152,7 @@ public class Page2 extends JFrame{
 		averageNoLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		averageNoField=new JTextField(60);
+		averageNoField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		averageNoField.setBounds(300,430,100,20);
 		averageNoField.setBackground(new Color(245,255,250));
 
@@ -153,6 +161,7 @@ public class Page2 extends JFrame{
 		budgetLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		budgetField=new JTextField(30);
+		budgetField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		budgetField.setBounds(300,470,70,20);
 		budgetField.setBackground(new Color(245,255,250));
 
@@ -161,6 +170,7 @@ public class Page2 extends JFrame{
 		toRsLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		toRsField=new JTextField(30);
+		toRsField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		toRsField.setBounds(420,470,70,20);
 		toRsField.setBackground(new Color(245,255,250));
 

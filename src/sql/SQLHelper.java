@@ -10,6 +10,7 @@ public class SQLHelper {
 
 	public static boolean isConnected;
 	private static Connection connection;
+	private static boolean resultFlag = false;
 
 	public static void connect() {
 		try {
@@ -23,9 +24,8 @@ public class SQLHelper {
 		}
 	}
 
-	public static void insertEvent(String date, String venue, String scale, int noOfPpl, int eventId,
-			String purpose, int ageGorup, String startTime, String endTime, String phone, 	String budget,
-			String plateBudget, String preference, String menu, String name, String email) {
+	public static boolean insertEvent(String date, String venue, String scale, int noOfPpl, int eventId,
+			String purpose, int ageGorup, String startTime, String endTime, String phone, 	String budget) {
 		try {
 			String eventQuery = "insert into EventDetails values('" + date
 					+ "', '" 	+ venue
@@ -42,8 +42,20 @@ public class SQLHelper {
 			System.out.println(eventQuery);
 			PreparedStatement statement1 = (PreparedStatement) connection.prepareStatement(eventQuery);
 			statement1.executeUpdate();
-			System.out.println("Event Record inserted.");
 			
+			System.out.println("Event Record inserted.");
+			resultFlag = true;
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Record insert failed.");
+		}
+		
+		return resultFlag;
+	}
+
+	public static void insertCustomer(String name, String email, int eventId, String phone) {
+		try {
 			String customerQuery = "insert into Customer values('" + name
 					+"', '" + email
 					+"', (select eventid from EventDetails where EventDetails.eventid = " + eventId
@@ -53,7 +65,16 @@ public class SQLHelper {
 			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(customerQuery);
 			System.out.println(customerQuery);
 			statement.executeUpdate();
+			
 			System.out.println("Cust Record inserted.");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void insertFood(int eventId, int noOfPpl, String plateBudget, String preference, String menu) {
+		try {
 			
 			String foodQuery = "insert into Food values("
 					+ "(select eventid from EventDetails where EventDetails.eventid = " + eventId
@@ -68,15 +89,41 @@ public class SQLHelper {
 					+ "'"
 					+ menu
 					+ "');";
-			
-			PreparedStatement statement2 = (PreparedStatement) connection.prepareStatement(foodQuery);
+
+			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(foodQuery);
 			System.out.println(foodQuery);
-			statement2.executeUpdate();
-			
+			statement.executeUpdate();
+
 			System.out.println("Food Record inserted.");
+			
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("Record insert failed.");
+		}
+	}
+	
+	public static void insertEntertainment(int eventId, String extras, String celebrity, String arrangements) {
+try {
+			
+			String entWuery = "insert into Entertainment values("
+					+ "(select eventId from EventDetails where EventDetails.eventId = " + eventId + "),"
+					+ "'"
+					+ extras
+					+ "',"
+					+ "'"
+					+ celebrity
+					+ "',"
+					+ "'"
+					+ arrangements
+					+ "');";
+
+			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(entWuery);
+			System.out.println(entWuery);
+			statement.executeUpdate();
+
+			System.out.println("Entertainment Record inserted.");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

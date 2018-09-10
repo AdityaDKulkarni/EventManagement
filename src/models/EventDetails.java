@@ -4,10 +4,27 @@ import java.io.Serializable;
 
 public class EventDetails implements Serializable{
 	private String typeOfEvent, date, startTime, endTime, address,venue, scale, budget,
-	phone, name, email, purpose, plateBudget, foodPreference, menu;
+	phone, name, email, purpose, plateBudget, foodPreference, menu, celebrity, arrangements;
 	private int avgNoOfPeople, eventId, ageGroup;
 	
 	
+	
+	public String getCelebrity() {
+		return celebrity;
+	}
+
+	public void setCelebrity(String celebrity) {
+		this.celebrity = celebrity;
+	}
+
+	public String getArrangements() {
+		return arrangements;
+	}
+
+	public void setArrangements(String arrangements) {
+		this.arrangements = arrangements;
+	}
+
 	public String getMenu() {
 		return menu;
 	}
