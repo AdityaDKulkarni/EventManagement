@@ -1,7 +1,7 @@
 package ui;
-
 import javax.swing.*;
 import assets.*;
+import global.Globals;
 import sql.SQLHelper;
 
 import java.awt.*;
@@ -13,14 +13,14 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-public class Page1 {
+public class Page1 extends JFrame{
 	
 	JFrame frame; 
 	JPanel panel;  
 	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblBday,lblDance,lblWedding;
-    JButton btnManage;
+    JButton btnManage, btnView;
 	
-	Page1(){
+    public Page1(){
 	    frame=new JFrame("Gallery");
 		makeFrameFullSize();
 		panel=(JPanel)frame.getContentPane();
@@ -74,22 +74,41 @@ public class Page1 {
 		lblDance.setBounds(450,500,150,15);
 		lblDance.setFont(new Font("Arial",Font.BOLD,14));
 		
-		JButton btnManage = new JButton("Manage my Event");
-		btnManage.setBounds(500, 600, 200, 23);
+		btnManage = new JButton("Manage my Event");
+		btnManage.setBounds(300, 600, 200, 23);
 		btnManage.setFont(new Font("Arial",Font.BOLD,14));
 		
 		btnManage.setBackground(new Color(30,180,255));
 		btnManage.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnManage.setMnemonic('M');
+		panel.setBackground(new Color(153,255,255));
+		
+		btnView = new JButton("View Records");
+		btnView.setBounds(700, 600, 170, 23);
+		btnView.setFont(new Font("Arial",Font.BOLD,14));
+		
+		btnView.setBackground(new Color(30,180,255));
+		btnView.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnView.setMnemonic('V');
+		
 		btnManage.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Page2 pg2 = new Page2();
 				frame.dispose();
-				SQLHelper.connect();
 			}
 		});
+		
+		btnView.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AllRecords allRecords = new AllRecords();
+				Globals.page1.dispose();
+			}
+		});
+		
 		panel.setBackground(new Color(153,255,255));
 		
 		panel.add(labelImg2);
@@ -98,12 +117,14 @@ public class Page1 {
 		panel.add(labelImg5);
 		panel.add(labelImg6);
 		panel.add(labelImg7);
-		panel.add(labelImg8);
+		panel.add(labelImg8); 
 		panel.add(lblBday);
 		panel.add(lblDance);
 		panel.add(lblWedding);
 		panel.add(btnManage);
+		panel.add(btnView);
 		
+		SQLHelper.connect();
 		frame.setVisible(true);
 		
 	}
@@ -114,7 +135,7 @@ public class Page1 {
 	}
 
 	public static void main(String a[]){
-		 new Page1();
+		 Globals.page1 = new Page1();
 	}
 	
 	

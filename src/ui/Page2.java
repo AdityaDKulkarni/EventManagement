@@ -5,7 +5,7 @@ import javax.swing.*;
 import custom.HintTextArea;
 import custom.HintTextField;
 import global.Globals;
-import sql.SQLHelper;
+import sql.SQLHelper; 
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,12 +22,12 @@ public class Page2 extends JFrame{
 	JButton nextButton;
 	JTextArea addressArea,venueAddressArea;  
 	JLabel nameLabel,addressLabel,phoneLabel,emailLabel,typeLabel,dateLabel,timingLabel,venueLabel,
-		scaleLabel,averageNoLabel,budgetLabel,toRsLabel, errorLabel, hyphenLabel;
+	scaleLabel,averageNoLabel,budgetLabel,toRsLabel, errorLabel, hyphenLabel;
 	JPanel panel;  
 	JComboBox<String> amComboBox,pmComboBox;
 	JComboBox<String> scaleComboBox;
 	Cursor cursor;
-	
+
 	int eventId;
 
 	public Page2(){
@@ -50,7 +50,8 @@ public class Page2 extends JFrame{
 		addressLabel.setBounds(60,70,100,50);
 		addressLabel.setFont(new Font("Arial",Font.BOLD,14));
 
-		addressArea=new HintTextArea("Enter your address");
+		addressArea=new JTextArea();
+		//addressArea=new HintTextArea("Enter your address");
 		addressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		addressArea.setBounds(300,70,250,75);
 		addressArea.setBackground(new Color(245,255,250));
@@ -94,16 +95,16 @@ public class Page2 extends JFrame{
 		timingLabel=new JLabel("Event Timings");
 		timingLabel.setBounds(60,250,150,20);
 		timingLabel.setFont(new Font("Arial",Font.BOLD,14));
-		
+
 		errorLabel = new JLabel();
 		errorLabel.setBackground(Color.WHITE);
 		errorLabel.setSize(new Dimension(300,100));
 		errorLabel.setLocation(600, 300);
-		
+
 		hyphenLabel = new JLabel("to");
 		hyphenLabel.setFont(new Font("Arial",Font.BOLD,14));
 		hyphenLabel.setBounds(400,250,75,20);
-		
+
 		amComboBox=new JComboBox<String>();
 		for(int i = 1; i <= 24; i++) {
 			if(i < 12) {
@@ -156,7 +157,7 @@ public class Page2 extends JFrame{
 		averageNoField.setBounds(300,430,100,20);
 		averageNoField.setBackground(new Color(245,255,250));
 
-		budgetLabel=new JLabel("Budget range:(₹)");
+		budgetLabel=new JLabel("Budget range:(Rs)");
 		budgetLabel.setBounds(60,470,140,20);  
 		budgetLabel.setFont(new Font("Arial",Font.BOLD,14));
 
@@ -177,7 +178,7 @@ public class Page2 extends JFrame{
 		cursor=new Cursor(Cursor.HAND_CURSOR);
 
 		nextButton=new JButton("Next");
-		nextButton.setBounds(370, 550, 100, 30);
+		nextButton.setBounds(370, 550, 170, 23);
 		nextButton.setBackground(new Color(30,180,255));
 		nextButton.setMnemonic('N');
 		nextButton.setToolTipText("Click Here");
@@ -189,7 +190,7 @@ public class Page2 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					eventId = ThreadLocalRandom.current().nextInt(1, 100);
+					eventId = ThreadLocalRandom.current().nextInt(1, 1000);
 					Globals.details.setEventId(eventId);
 					Globals.details.setName(nameField.getText().toString());
 					Globals.details.setPhone(phoneField.getText().toString());
@@ -209,7 +210,7 @@ public class Page2 extends JFrame{
 					errorLabel.setText("Please fill required fields!");
 					frame.dispose();
 					Page3 page3 = new Page3();
-				} 
+				}
 			}
 		});
 
@@ -256,4 +257,5 @@ public class Page2 extends JFrame{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
 	}
+
 }

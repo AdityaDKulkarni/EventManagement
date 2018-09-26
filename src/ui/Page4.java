@@ -52,9 +52,9 @@ class Page4 implements ActionListener
 		comboBoxDance.addItem("Western");
 		comboBoxDance.setBackground(new Color(215,255,230));
 		frame.getContentPane().add(comboBoxDance);
-		
 
-		
+
+
 
 		chckbxSkit = new JCheckBox("Skit");
 		chckbxSkit.setBounds(51, 140, 90, 23);
@@ -70,7 +70,7 @@ class Page4 implements ActionListener
 		comboBoxSkit.setBackground(new Color(215,255,230));
 		frame.getContentPane().add(comboBoxSkit);
 
-		
+
 
 		chckbxMusic = new JCheckBox("Music");
 		chckbxMusic.setBounds(51,190, 90, 23);
@@ -78,7 +78,7 @@ class Page4 implements ActionListener
 		frame.getContentPane().add(chckbxMusic);
 		chckbxMusic.setBackground(new Color(215,255,230));
 
-		
+
 		comboBoxMusic = new JComboBox<String>();
 		comboBoxMusic.setBounds(160, 190, 142, 23);
 		comboBoxMusic.addItem("Orchestra");
@@ -87,7 +87,7 @@ class Page4 implements ActionListener
 		comboBoxMusic.setBackground(new Color(215,255,230));
 		frame.getContentPane().add(comboBoxMusic);
 
-		
+
 		JLabel lblCelebrityAppointment = new JLabel("Celebrity Preferred:");
 		lblCelebrityAppointment.setBounds(51, 340, 190, 14);
 		lblCelebrityAppointment.setFont(new Font("Arial",Font.BOLD,14));
@@ -145,10 +145,10 @@ class Page4 implements ActionListener
 		btnQuit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnQuit.setMnemonic('Q');
 		btnQuit.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 
@@ -163,44 +163,47 @@ class Page4 implements ActionListener
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(chckbxDance.isSelected()) {
-					extras += chckbxDance.getLabel() + "(" + comboBoxDance.getSelectedItem().toString() + "),";
+				try {
+					if(chckbxDance.isSelected()) {
+						extras += chckbxDance.getLabel() + "(" + comboBoxDance.getSelectedItem().toString() + "),";
+					}
+					if(chckbxSkit.isSelected()) {
+						extras += chckbxSkit.getLabel() + "(" + comboBoxSkit.getSelectedItem().toString() + "),";
+					}
+					if(chckbxMusic.isSelected()) {
+						extras += chckbxMusic.getLabel() + "(" + comboBoxMusic.getSelectedItem().toString() + "),";
+					}
+					if(chckbxVideoPresentation.isSelected()) {
+						extras += chckbxVideoPresentation.getLabel() + ",";
+					}
+					if(chckbxPhotographer.isSelected()) {
+						extras += chckbxPhotographer.getLabel() +  ",";
+					}
+
+					Globals.details.setCelebrity(textFieldCeleb.getText().toString());
+					Globals.details.setArrangements(textAreaEArrangement.getText().toString());
+
+					System.out.println(extras);
+
+					boolean resultFlag = SQLHelper.insertEvent(Globals.details.getDate(), Globals.details.getVenue(), Globals.details.getScale(),
+							Globals.details.getAvgNoOfPeople(), Globals.details.getEventId(), Globals.details.getPurpose(),
+							Globals.details.getAgeGroup(), Globals.details.getStartTime(), Globals.details.getEndTime(), 
+							Globals.details.getPhone(), Globals.details.getBudget());
+
+					if(resultFlag) {
+						SQLHelper.insertCustomer(Globals.details.getName(), Globals.details.getEmail(),
+								Globals.details.getEventId(), Globals.details.getPhone());
+
+						SQLHelper.insertFood(Globals.details.getEventId(), Globals.details.getAvgNoOfPeople(),
+								Globals.details.getPlateBudget(), Globals.details.getFoodPreference(), Globals.details.getMenu());
+
+						SQLHelper.insertEntertainment(Globals.details.getEventId(), extras,
+								Globals.details.getCelebrity(), Globals.details.getArrangements());
+					}
+				}catch(Exception e1) {
+					e1.printStackTrace();
 				}
-				if(chckbxSkit.isSelected()) {
-					extras += chckbxSkit.getLabel() + "(" + comboBoxSkit.getSelectedItem().toString() + "),";
-				}
-				if(chckbxMusic.isSelected()) {
-					extras += chckbxMusic.getLabel() + "(" + comboBoxMusic.getSelectedItem().toString() + "),";
-				}
-				if(chckbxVideoPresentation.isSelected()) {
-					extras += chckbxVideoPresentation.getLabel() + ",";
-				}
-				if(chckbxPhotographer.isSelected()) {
-					extras += chckbxPhotographer.getLabel() +  ",";
-				}
-				
-				Globals.details.setCelebrity(textFieldCeleb.getText().toString());
-				Globals.details.setArrangements(textAreaEArrangement.getText().toString());
-				
-				System.out.println(extras);
-				
-				boolean resultFlag = SQLHelper.insertEvent(Globals.details.getDate(), Globals.details.getVenue(), Globals.details.getScale(),
-						Globals.details.getAvgNoOfPeople(), Globals.details.getEventId(), Globals.details.getPurpose(),
-						Globals.details.getAgeGroup(), Globals.details.getStartTime(), Globals.details.getEndTime(), 
-						Globals.details.getPhone(), Globals.details.getBudget());
-				
-				if(resultFlag) {
-					SQLHelper.insertCustomer(Globals.details.getName(), Globals.details.getEmail(),
-							Globals.details.getEventId(), Globals.details.getPhone());
-					
-					SQLHelper.insertFood(Globals.details.getEventId(), Globals.details.getAvgNoOfPeople(),
-							Globals.details.getPlateBudget(), Globals.details.getFoodPreference(), Globals.details.getMenu());
-					
-					SQLHelper.insertEntertainment(Globals.details.getEventId(), extras,
-							Globals.details.getCelebrity(), Globals.details.getArrangements());
-				}
-				
+
 			}
 		});
 

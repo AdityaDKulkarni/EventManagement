@@ -1,20 +1,13 @@
 package ui;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import assets.*;
 import custom.HintTextArea;
 import global.Globals;
-import sql.SQLHelper;
-
-import java.io.IOException;
 
 public class Page3 extends JFrame {
 
@@ -27,8 +20,7 @@ public class Page3 extends JFrame {
 	JCheckBox chkSweets,chkDrinks,chkCake;
 	JButton btnNext;
 
-	public Page3()
-	{
+	public Page3(){
 		frame=new JFrame("Event details");
 		makeFrameFullSize();
 		panel=(JPanel)frame.getContentPane();
@@ -92,7 +84,7 @@ public class Page3 extends JFrame {
 		btnNext.setToolTipText("Click Here");
 		btnNext.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnNext.setFont(new Font("Arial",Font.BOLD,14));
-		btnNext.setBounds(250,550,100,20);
+		btnNext.setBounds(250,550,170,23);
 		btnNext.setBackground(new Color(30,180,255));
 		btnNext.addActionListener(new ActionListener() {
 
@@ -108,7 +100,7 @@ public class Page3 extends JFrame {
 					Page4 name = new Page4();
 				}catch(Exception e1) {
 					e1.printStackTrace();
-					/*Page4 name = new Page4();*/
+					Page4 name = new Page4();
 				}
 			}
 		});
@@ -140,8 +132,4 @@ public class Page3 extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
 	}
-
-	/*public static void main(String[] args) {
-		Page3 page3 = new Page3();
-	}*/
 }
