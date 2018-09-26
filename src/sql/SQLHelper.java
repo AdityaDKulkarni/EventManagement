@@ -147,12 +147,12 @@ public class SQLHelper {
 	public static ResultSet getEventDetails(String name) {
 		try {
 			String eventQuery = "select Customer.name, EventDetails.purpose, EventDetails.venue,"
-					+ "EventDetails.dateofevent, EventDetails.starttime, EventDetails.endtime, EventDetails.budget,"
-					+ "Food.platebudget, Entertainment.extras, Entertainment.celebrity, Entertainment.arrangements from Customer"
-					+ "left join EventDetails on Customer.eventid = EventDetails.eventid"
-					+ "left join Food on Customer.eventid = Food.eventid left join Entertainment"
-					+ "on Customer.eventid = Entertainment.eventid where Customer.name = '" + name + "';";
-
+					+ " EventDetails.dateofevent, EventDetails.starttime, EventDetails.endtime, EventDetails.budget,"
+					+ " Food.platebudget, Entertainment.extras, Entertainment.celebrity, Entertainment.arrangements from Customer"
+					+ " left join EventDetails on Customer.eventid = EventDetails.eventid"
+					+ " left join Food on Customer.eventid = Food.eventid left join Entertainment"
+					+ " on Customer.eventid = Entertainment.eventid where Customer.name = \"" + name + "\";";
+			System.out.println(eventQuery);
 			PreparedStatement statement = (PreparedStatement) connection.prepareStatement(eventQuery);
 			System.out.println(eventQuery);
 			set =  statement.executeQuery();
