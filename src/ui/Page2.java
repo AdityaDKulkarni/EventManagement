@@ -14,6 +14,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Page2 extends JFrame{
 
@@ -99,7 +101,7 @@ public class Page2 extends JFrame{
 		errorLabel = new JLabel();
 		errorLabel.setBackground(Color.WHITE);
 		errorLabel.setSize(new Dimension(300,100));
-		errorLabel.setLocation(600, 300);
+		errorLabel.setLocation(700, 300);
 
 		hyphenLabel = new JLabel("to");
 		hyphenLabel.setFont(new Font("Arial",Font.BOLD,14));
@@ -190,22 +192,26 @@ public class Page2 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					eventId = ThreadLocalRandom.current().nextInt(1, 1000);
-					Globals.details.setEventId(eventId);
-					Globals.details.setName(nameField.getText().toString());
-					Globals.details.setPhone(phoneField.getText().toString());
-					Globals.details.setEmail(emailField.getText().toString());
-					Globals.details.setAddress(addressArea.getText().toString());
-					Globals.details.setTypeOfEvent(typeField.getText().toString());
-					Globals.details.setDate(dateField.getText().toString());
-					Globals.details.setStartTime(amComboBox.getSelectedItem().toString());
-					Globals.details.setEndTime(pmComboBox.getSelectedItem().toString());
-					Globals.details.setVenue(venueAddressArea.getText().toString());
-					Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
-					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
-					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
-					frame.dispose();
-					Page3 page3 = new Page3();
+					if(isEmailValid(emailField.getText().toString())) {
+						eventId = ThreadLocalRandom.current().nextInt(1, 1000);
+						Globals.details.setEventId(eventId);
+						Globals.details.setName(nameField.getText().toString());
+						Globals.details.setPhone(phoneField.getText().toString());
+						Globals.details.setEmail(emailField.getText().toString());
+						Globals.details.setAddress(addressArea.getText().toString());
+						Globals.details.setTypeOfEvent(typeField.getText().toString());
+						Globals.details.setDate(dateField.getText().toString());
+						Globals.details.setStartTime(amComboBox.getSelectedItem().toString());
+						Globals.details.setEndTime(pmComboBox.getSelectedItem().toString());
+						Globals.details.setVenue(venueAddressArea.getText().toString());
+						Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
+						Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
+						Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
+						frame.dispose();
+						Page3 page3 = new Page3();
+					}else {
+						errorLabel.setText("Please enter valid email!");
+					}
 				}catch (NumberFormatException e1) {
 					errorLabel.setText("Please fill required fields!");
 					frame.dispose();
@@ -251,6 +257,11 @@ public class Page2 extends JFrame{
 			}
 		});
 		frame.setVisible(true);
+	}
+
+	private boolean isEmailValid(String email) {
+		Matcher matcher = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$").matcher(email);
+		return matcher.find();
 	}
 
 	private void makeFrameFullSize(){
