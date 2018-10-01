@@ -2,17 +2,16 @@ package ui;
 
 import javax.swing.*;
 
+import com.itextpdf.text.Document;
+
 import custom.HintTextArea;
 import custom.HintTextField;
 import global.Globals;
-import sql.SQLHelper; 
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,9 +28,7 @@ public class Page2 extends JFrame{
 	JComboBox<String> amComboBox,pmComboBox;
 	JComboBox<String> scaleComboBox;
 	Cursor cursor;
-
 	int eventId;
-
 	public Page2(){
 
 		frame=new JFrame("Event Details");
@@ -52,8 +49,7 @@ public class Page2 extends JFrame{
 		addressLabel.setBounds(60,70,100,50);
 		addressLabel.setFont(new Font("Arial",Font.BOLD,14));
 
-		addressArea=new JTextArea();
-		//addressArea=new HintTextArea("Enter your address");
+		addressArea=new HintTextArea("Enter your address");
 		addressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		addressArea.setBounds(300,70,250,75);
 		addressArea.setBackground(new Color(245,255,250));
@@ -147,7 +143,7 @@ public class Page2 extends JFrame{
 		scaleComboBox.addItem("Small Scale");
 		scaleComboBox.addItem("Medium Scale");
 		scaleComboBox.addItem("Large Scale");
-		scaleComboBox.setBounds(300,390,100,20);
+		scaleComboBox.setBounds(300,390,150,20);
 		scaleComboBox.setBackground(new Color(245,255,250));
 
 		averageNoLabel=new JLabel("Average number of people");
@@ -160,7 +156,7 @@ public class Page2 extends JFrame{
 		averageNoField.setBackground(new Color(245,255,250));
 
 		budgetLabel=new JLabel("Budget range:(Rs)");
-		budgetLabel.setBounds(60,470,140,20);  
+		budgetLabel.setBounds(60,470,160,20);  
 		budgetLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		budgetField=new JTextField(30);
@@ -192,27 +188,44 @@ public class Page2 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(isEmailValid(emailField.getText().toString())) {
-						eventId = ThreadLocalRandom.current().nextInt(1, 1000);
-						Globals.details.setEventId(eventId);
-						Globals.details.setName(nameField.getText().toString());
-						Globals.details.setPhone(phoneField.getText().toString());
-						Globals.details.setEmail(emailField.getText().toString());
-						Globals.details.setAddress(addressArea.getText().toString());
-						Globals.details.setTypeOfEvent(typeField.getText().toString());
-						Globals.details.setDate(dateField.getText().toString());
-						Globals.details.setStartTime(amComboBox.getSelectedItem().toString());
-						Globals.details.setEndTime(pmComboBox.getSelectedItem().toString());
-						Globals.details.setVenue(venueAddressArea.getText().toString());
-						Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
-						Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText()));
-						Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
-						frame.dispose();
-						Page3 page3 = new Page3();
-					}else {
-						errorLabel.setText("Please enter valid email!");
+					if(!isDataValid()) {
+						errorLabel.setText("Please fill all the fields!");
+						return;
 					}
-				}catch (NumberFormatException e1) {
+					if(!isEmailValid(emailField.getText().toString())) {
+						errorLabel.setText("Please enter valid email!");
+						return;
+					}
+					if(!isPhoneValid()){
+						errorLabel.setText("Please enter valid phone number!");
+						return;
+					}
+					if(budgetField.getText().toString().isEmpty() || toRsField.getText().toString().isEmpty()){
+						errorLabel.setText("Budget cannot be empty!");
+						return;
+					}
+					if(!isBudgetValid()){
+						errorLabel.setText("Please enter valid budget!");
+						return;
+					}
+					eventId = ThreadLocalRandom.current().nextInt(1, 1000);
+					Globals.details.setEventId(eventId);
+					Globals.details.setName(nameField.getText().toString());
+					Globals.details.setPhone(phoneField.getText().toString());
+					Globals.details.setEmail(emailField.getText().toString());
+					Globals.details.setAddress(addressArea.getText().toString());
+					Globals.details.setTypeOfEvent(typeField.getText().toString());
+					Globals.details.setDate(dateField.getText().toString());
+					Globals.details.setStartTime(amComboBox.getSelectedItem().toString());
+					Globals.details.setEndTime(pmComboBox.getSelectedItem().toString());
+					Globals.details.setVenue(venueAddressArea.getText().toString());
+					Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
+					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText().toString()));
+					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
+					frame.dispose();
+					Page3 page3 = new Page3();
+
+				}catch (Exception e1) {
 					errorLabel.setText("Please fill required fields!");
 					frame.dispose();
 					Page3 page3 = new Page3();
@@ -262,6 +275,34 @@ public class Page2 extends JFrame{
 	private boolean isEmailValid(String email) {
 		Matcher matcher = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$").matcher(email);
 		return matcher.find();
+	}
+
+	private boolean isBudgetValid() {
+		if(Integer.valueOf(budgetField.getText().toString()) > Integer.valueOf(toRsField.getText().toString())) {
+			return false;
+		}	
+		return true;
+	}
+	
+	private boolean isPhoneValid() {
+		if(phoneField.getText().toString().length() < 10) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private boolean isDataValid() {
+		if(nameField.getText().toString().isEmpty() || typeField.getText().toString().isEmpty() || dateField.getText().toString().isEmpty()
+				|| averageNoField.getText().toString().isEmpty() || addressArea.getText().toString().isEmpty()
+				|| venueAddressArea.getText().toString().isEmpty()
+				|| scaleComboBox.getSelectedItem().toString().equalsIgnoreCase("Select")
+				|| (amComboBox.getSelectedItem().toString().equalsIgnoreCase("1 AM")
+				&& pmComboBox.getSelectedItem().toString().equalsIgnoreCase("1 AM"))) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	private void makeFrameFullSize(){

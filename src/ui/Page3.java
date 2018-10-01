@@ -13,11 +13,10 @@ public class Page3 extends JFrame {
 
 	JFrame frame;
 	JPanel panel;  
-	JLabel lblCause,lblAvgAge,lblBudget,lblFoodPrefer,lblMenu,lblExtraItem,lblApproxCost;
-	JTextField tfPurposeCause,tfAge,tfBudget,TextFieldApprox;
+	JLabel lblCause,lblAvgAge,lblBudget,lblFoodPrefer,lblMenu,lblExtraItem,lblApproxCost, errorLabel;
+	JTextField tfPurposeCause,tfAge,tfBudget;
 	JTextArea taMenu;
 	JComboBox<String> comboFoodPref;
-	JCheckBox chkSweets,chkDrinks,chkCake;
 	JButton btnNext;
 
 	public Page3(){
@@ -78,6 +77,11 @@ public class Page3 extends JFrame {
 		taMenu.setFont(new Font("Arial",Font.PLAIN,14));
 		taMenu.setBounds(300,270,300,70);
 		taMenu.setBackground(new Color(245,255,250));
+		
+		errorLabel = new JLabel();
+		errorLabel.setBackground(Color.WHITE);
+		errorLabel.setSize(new Dimension(300,100));
+		errorLabel.setLocation(700, 300);
 
 		btnNext=new JButton("Next");
 		btnNext.setMnemonic('N');
@@ -91,6 +95,12 @@ public class Page3 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(!isDataValid()) {
+						errorLabel.setText("Please fill all the fields!");
+						return;
+					}
+					System.out.println("Age group: " + Integer.parseInt(tfAge.getText().toString()));
+					System.out.println("Purpose: " + tfPurposeCause.getText().toString());
 					Globals.details.setPurpose(tfPurposeCause.getText().toString());
 					Globals.details.setAgeGroup(Integer.parseInt(tfAge.getText().toString()));
 					Globals.details.setPlateBudget(tfBudget.getText().toString());
@@ -108,6 +118,7 @@ public class Page3 extends JFrame {
 		panel.add(lblCause);
 		panel.add(lblAvgAge);
 		panel.add(lblBudget);
+		panel.add(errorLabel);
 		panel.add(tfPurposeCause);
 		panel.add(tfAge);
 		panel.add(tfBudget);
@@ -126,6 +137,17 @@ public class Page3 extends JFrame {
 		});
 		frame.setVisible(true);
 
+	}
+	
+	private boolean isDataValid() {
+		if(tfPurposeCause.getText().toString().isEmpty()
+				|| tfAge.getText().isEmpty()
+				|| tfBudget.getText().toString().isEmpty()
+				|| taMenu.getText().toString().isEmpty()) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	private void makeFrameFullSize(){

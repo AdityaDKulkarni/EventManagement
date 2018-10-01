@@ -3,11 +3,26 @@ package ui;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfChunk;
+import com.itextpdf.text.pdf.PdfFileSpecification;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.collection.PdfTargetDictionary;
+
 import global.Globals;
 import sql.SQLHelper;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileOutputStream;
 
 class Page4 implements ActionListener
 {
@@ -20,8 +35,7 @@ class Page4 implements ActionListener
 	JPanel p1;
 	String extras="";
 
-	Page4()
-	{
+	Page4(){
 
 		frame = new JFrame("Event Details");
 
@@ -128,14 +142,14 @@ class Page4 implements ActionListener
 		chckbxPhotographer.setBackground(new Color(215,255,230));
 
 
-		JButton btnEnd = new JButton("Finish");
-		btnEnd.setBounds(117, 600, 89, 23);
-		btnEnd.setFont(new Font("Arial",Font.BOLD,14));
-		frame.getContentPane().add(btnEnd);
-		btnEnd.setBackground(new Color(30,180,255));
-		btnEnd.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnEnd.setMnemonic('F');
-		btnEnd.addActionListener(this);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(117, 600, 100, 23);
+		btnSubmit.setFont(new Font("Arial",Font.BOLD,14));
+		frame.getContentPane().add(btnSubmit);
+		btnSubmit.setBackground(new Color(30,180,255));
+		btnSubmit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnSubmit.setMnemonic('F');
+		btnSubmit.addActionListener(this);
 
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.setBounds(269, 600, 89, 23);
@@ -148,7 +162,7 @@ class Page4 implements ActionListener
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				frame.dispose();
 			}
 		});
 
@@ -159,7 +173,8 @@ class Page4 implements ActionListener
 		btnViewSummaryOf.setBackground(new Color(30,180,255));
 		btnViewSummaryOf.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnViewSummaryOf.setMnemonic('V');
-		btnViewSummaryOf.addActionListener(new ActionListener() {
+
+		btnSubmit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -182,6 +197,7 @@ class Page4 implements ActionListener
 
 					Globals.details.setCelebrity(textFieldCeleb.getText().toString());
 					Globals.details.setArrangements(textAreaEArrangement.getText().toString());
+
 
 					System.out.println(extras);
 
@@ -207,6 +223,14 @@ class Page4 implements ActionListener
 			}
 		});
 
+		btnViewSummaryOf.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				writePDF();
+			}
+		});
+
 
 		p1.setBackground(new Color(153,255,255));
 		frame.addWindowListener(new WindowAdapter() {
@@ -228,5 +252,75 @@ class Page4 implements ActionListener
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
 	}
+
+	private void writePDF() {
+		try {
+			Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+			PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream("/home/aditya/Desktop/Records.pdf"));
+			document.open();
+			Paragraph title1 = new Paragraph("");
+			Chapter chapter1 = new Chapter(title1, 1);
+			chapter1.setNumberDepth(0);
+
+			Paragraph title11 = new Paragraph("");
+			Section section1 = chapter1.addSection(title11);
+			
+			Paragraph someSectionText = new Paragraph("");
+			section1.add(someSectionText);
+			someSectionText = new Paragraph("");
+			section1.add(someSectionText);
+
+			PdfPTable pdfTable = new PdfPTable(2);
+			
+			pdfTable.setSpacingBefore(25);
+			pdfTable.setSpacingAfter(25);
+			
+			pdfTable.addCell("Name");			
+			pdfTable.addCell(Globals.details.getName());
+			
+			pdfTable.addCell("Contact");
+			pdfTable.addCell(Globals.details.getPhone());
+			
+			pdfTable.addCell("Venue");
+			pdfTable.addCell(Globals.details.getVenue());
+			
+			pdfTable.addCell("Date");
+			pdfTable.addCell(Globals.details.getDate());
+			
+			pdfTable.addCell("Time");
+			pdfTable.addCell(Globals.details.getStartTime() + " to " + Globals.details.getEndTime());
+
+			pdfTable.addCell("Purpose");
+			pdfTable.addCell(Globals.details.getPurpose());
+			
+			pdfTable.addCell("No of people");
+			pdfTable.addCell(String.valueOf(Globals.details.getAvgNoOfPeople()));
+			
+			pdfTable.addCell("Age group");
+			pdfTable.addCell(String.valueOf(Globals.details.getAgeGroup()));
+			
+			pdfTable.addCell("Food preference");
+			pdfTable.addCell(Globals.details.getPhone());
+			
+			pdfTable.addCell("Menu");
+			pdfTable.addCell(Globals.details.getFoodPreference());
+			
+			pdfTable.addCell("Celebrity");
+			pdfTable.addCell(Globals.details.getCelebrity());
+			
+			pdfTable.addCell("Arrangements");
+			pdfTable.addCell(Globals.details.getArrangements());
+
+			section1.add(pdfTable);
+			document.add(chapter1);
+			document.close();
+		}catch(Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	/*public static void main(String[] args) {
+		Page4 pg4 = new Page4();
+	}*/
 
 }
