@@ -154,4 +154,5 @@ public class Page3 extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height);
 	}
+	
 }

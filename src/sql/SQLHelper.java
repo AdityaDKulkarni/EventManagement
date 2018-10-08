@@ -58,8 +58,11 @@ public class SQLHelper {
 
 	public static void insertCustomer(String name, String email, int eventId, String phone) {
 		try {
-			String customerQuery = "insert into " + Constants.CUSTOMER_TABLE + " values('" + name
-					+ "', '" + email
+			String customerQuery = "insert into " 
+					+ Constants.CUSTOMER_TABLE
+					+ " values('" + name
+					+ "', '"
+					+ email
 					+ "', (select eventid from " + Constants.EVENTDETAILS_TABLE + " where EventDetails.eventid = " + eventId
 					+ "),"
 					+ " (select cust_phone from " + Constants.EVENTDETAILS_TABLE + " where EventDetails.eventid = " + eventId

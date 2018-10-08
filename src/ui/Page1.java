@@ -137,6 +137,4 @@ public class Page1 extends JFrame{
 	public static void main(String a[]){
 		 Globals.page1 = new Page1();
 	}
-	
-	
 }

@@ -48,7 +48,7 @@ class Page4 implements ActionListener
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblDetailsOfEvent = new JLabel("Extra requirements");
-		lblDetailsOfEvent.setBounds(316, 22, 190, 14);
+		lblDetailsOfEvent.setBounds(316, 22, 230, 14);
 		lblDetailsOfEvent.setFont(new Font("Arial",Font.BOLD,18));
 		frame.add(lblDetailsOfEvent);
 
@@ -95,8 +95,8 @@ class Page4 implements ActionListener
 
 		comboBoxMusic = new JComboBox<String>();
 		comboBoxMusic.setBounds(160, 190, 142, 23);
-		comboBoxMusic.addItem("Orchestra");
 		comboBoxMusic.addItem("Fusion");
+		comboBoxMusic.addItem("Orchestra");
 		comboBoxMusic.addItem("Instrumental");
 		comboBoxMusic.setBackground(new Color(215,255,230));
 		frame.getContentPane().add(comboBoxMusic);
@@ -318,9 +318,5 @@ class Page4 implements ActionListener
 			e1.printStackTrace();
 		}
 	}
-
-	/*public static void main(String[] args) {
-		Page4 pg4 = new Page4();
-	}*/
 
 }
