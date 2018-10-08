@@ -230,6 +230,14 @@ class Page4 implements ActionListener
 				writePDF();
 			}
 		});
+		
+		btnQuit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 
 
 		p1.setBackground(new Color(153,255,255));
