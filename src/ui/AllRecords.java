@@ -44,9 +44,22 @@ public class AllRecords extends JFrame{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		JLabel labelimg=new JLabel("");
+		Image pic=new ImageIcon(this.getClass().getResource("/assets/p12.png")).getImage();
+		labelimg.setIcon(new ImageIcon(pic));
+		labelimg.setBounds(850,30,370,470);
+		panel.add(labelimg);
+		
+		JLabel labelimg1=new JLabel("");
+		Image pic1=new ImageIcon(this.getClass().getResource("/assets/p13.jpg")).getImage();
+		labelimg1.setIcon(new ImageIcon(pic1));
+		labelimg1.setBounds(50,330,300,230);
+		panel.add(labelimg1);
 
 		name=new JLabel("Name");
 		name.setFont(new Font("Arial",Font.BOLD,14));
+		name.setForeground(Color.white);
 		name.setBounds(440,70,100,20);
 
 		tfname=new JTextField(60);
@@ -58,6 +71,7 @@ public class AllRecords extends JFrame{
 
 		Cause=new JLabel("Cause of Event");
 		Cause.setFont(new Font("Arial",Font.BOLD,14));
+		Cause.setForeground(Color.white);
 		Cause.setBounds(440,110,120,20);
 
 		tfcause=new JTextField(60);
@@ -69,6 +83,7 @@ public class AllRecords extends JFrame{
 
 		venue=new JLabel("Venue of Event");
 		venue.setFont(new Font("Arial",Font.BOLD,14));
+		venue.setForeground(Color.white);
 		venue.setBounds(440,150,140,20);
 
 		tfvenue=new JTextArea();
@@ -80,6 +95,7 @@ public class AllRecords extends JFrame{
 
 		date=new JLabel("Date of Event");
 		date.setFont(new Font("Arial",Font.BOLD,14));
+		date.setForeground(Color.white);
 		date.setBounds(440,300,120,20);
 
 		tfdate=new JTextField(60);
@@ -91,6 +107,7 @@ public class AllRecords extends JFrame{
 
 		time=new JLabel("Time of Event");
 		time.setFont(new Font("Arial",Font.BOLD,14));
+		time.setForeground(Color.white);
 		time.setBounds(440,340,120,20);
 
 		tftime=new JTextField(60);
@@ -102,6 +119,7 @@ public class AllRecords extends JFrame{
 
 		budgetplate=new JLabel("Budged per plate");
 		budgetplate.setFont(new Font("Arial",Font.BOLD,14));
+		budgetplate.setForeground(Color.white);
 		budgetplate.setBounds(440,420,140,20);
 
 		tfbudgetplate=new JTextField(60);
@@ -113,6 +131,7 @@ public class AllRecords extends JFrame{
 
 		totalbudget=new JLabel("Total Budget");
 		totalbudget.setFont(new Font("Arial",Font.BOLD,14));
+		totalbudget.setForeground(Color.white);
 		totalbudget.setBounds(440,380,140,20);
 
 		tftotalbudget=new JTextField(60);
@@ -124,6 +143,7 @@ public class AllRecords extends JFrame{
 
 		entertainment=new JLabel("Entertainment");
 		entertainment.setFont(new Font("Arial",Font.BOLD,14));
+		entertainment.setForeground(Color.white);
 		entertainment.setBounds(440,460,120,20);
 		
 		tfentertainment=new JTextArea(5,100);
@@ -139,7 +159,7 @@ public class AllRecords extends JFrame{
 		btnBack.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnBack.setFont(new Font("Arial",Font.BOLD,14));
 		btnBack.setBounds(450,600,150,20);
-		btnBack.setBackground(new Color(30,180,255));
+		btnBack.setBackground(new Color(200,240,250));
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -154,7 +174,7 @@ public class AllRecords extends JFrame{
 		btnSearch.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSearch.setFont(new Font("Arial",Font.BOLD,14));
 		btnSearch.setBounds(70,150,150,20);
-		btnSearch.setBackground(new Color(30,180,255));
+		btnSearch.setBackground(new Color(200,240,250));
 
 		btnSearch.addActionListener(new ActionListener() {
 
@@ -201,7 +221,7 @@ public class AllRecords extends JFrame{
 		panel.add(btnBack);
 		panel.add(btnSearch);
 
-		panel.setBackground(new Color(153,255,255));
+		panel.setBackground(new Color(100,130,230));
 		frame.setVisible(true);
 
 	}

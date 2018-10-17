@@ -36,72 +36,91 @@ public class Page2 extends JFrame{
 		panel=(JPanel)frame.getContentPane();
 		panel.setLayout(null);
 
+		JLabel labelimg=new JLabel("");
+		Image pic1=new ImageIcon(this.getClass().getResource("/assets/p7.png")).getImage();
+		labelimg.setIcon(new ImageIcon(pic1));
+		labelimg.setBounds(680,20,540,650);
+
 		nameLabel=new JLabel("Name");
-		nameLabel.setBounds(60,30,100,20);
+		nameLabel.setBounds(60,10,100,20);
 		nameLabel.setFont(new Font("Arial",Font.BOLD,14));
+		nameLabel.setForeground(Color.WHITE);
 
 		nameField=new JTextField(30);
 		nameField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		nameField.setBounds(300,30,230,20);
-		nameField.setBackground(new Color(245,255,250));
+		nameField.setBounds(300,10,230,20);
+		nameField.setBackground(new Color(205,255,250));
+
 
 		addressLabel=new JLabel("Address");
-		addressLabel.setBounds(60,70,100,50);
+		addressLabel.setBounds(60,50,100,50);
 		addressLabel.setFont(new Font("Arial",Font.BOLD,14));
+		addressLabel.setForeground(Color.WHITE);
 
 		addressArea=new HintTextArea("Enter your address");
 		addressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		addressArea.setBounds(300,70,250,75);
-		addressArea.setBackground(new Color(245,255,250));
+		addressArea.setBounds(300,50,250,75);
+		addressArea.setBackground(new Color(205,255,250));
 
 		phoneLabel=new JLabel("Phone No.");
-		phoneLabel.setBounds(600,30,100,20);
+		phoneLabel.setBounds(60,140,100,20);
 		phoneLabel.setFont(new Font("Arial",Font.BOLD,14));
+		phoneLabel.setForeground(Color.WHITE);
 
 		phoneField=new JTextField(30);
 		phoneField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		phoneField.setBounds(690,30,150,20);
-		phoneField.setBackground(new Color(245,255,250));
+		phoneField.setBounds(300,140,150,20);
+		phoneField.setBackground(new Color(205,255,250));
 
 		emailLabel=new JLabel("Email");
-		emailLabel.setBounds(600,70,70,20); 
+		emailLabel.setBounds(60,180,70,20); 
 		emailLabel.setFont(new Font("Arial",Font.BOLD,14));
+		emailLabel.setForeground(Color.WHITE);
 
 		emailField=new JTextField(40);
 		emailField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		emailField.setBounds(690,70,200,20);
-		emailField.setBackground(new Color(245,255,250));
+		emailField.setBounds(300,180,200,20);
+		emailField.setBackground(new Color(205,255,250));
 
 		typeLabel=new JLabel("Type of Event");
-		typeLabel.setBounds(60,170,150,20); 
+		typeLabel.setBounds(60,220,150,20); 
 		typeLabel.setFont(new Font("Arial",Font.BOLD,14));
+		typeLabel.setForeground(Color.WHITE);
 
 		typeField=new JTextField(100);
 		typeField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		typeField.setBounds(300,170,200,20);
-		typeField.setBackground(new Color(245,255,250));
+		typeField.setBounds(300,220,200,20);
+		typeField.setBackground(new Color(205,255,250));
 
 		dateLabel=new JLabel("Date");
-		dateLabel.setBounds(60,210,150,20);
+		dateLabel.setBounds(60,260,150,20);
 		dateLabel.setFont(new Font("Arial",Font.BOLD,14));
+		dateLabel.setForeground(Color.WHITE);
 
-		dateField = new HintTextField("YYYY-MM-DD");
+		dateField = new JTextField("YYYY-MM-DD");
+		//	dateField = new HintTextField("YYYY-MM-DD");
 		dateField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		dateField.setBounds(300,210,100,20);
-		dateField.setBackground(new Color(245,255,250));
+		dateField.setBounds(300,260,100,20);
+		dateField.setBackground(new Color(205,255,250));
 
 		timingLabel=new JLabel("Event Timings");
-		timingLabel.setBounds(60,250,150,20);
+		timingLabel.setBounds(60,300,150,20);
 		timingLabel.setFont(new Font("Arial",Font.BOLD,14));
+		timingLabel.setForeground(Color.WHITE);
 
 		errorLabel = new JLabel();
 		errorLabel.setBackground(Color.WHITE);
 		errorLabel.setSize(new Dimension(300,100));
-		errorLabel.setLocation(700, 300);
-
+		errorLabel.setForeground(Color.WHITE);
+		errorLabel.setBounds(370, 610, 170, 23);
+		
 		hyphenLabel = new JLabel("to");
 		hyphenLabel.setFont(new Font("Arial",Font.BOLD,14));
-		hyphenLabel.setBounds(400,250,75,20);
+		hyphenLabel.setBounds(400,300,75,20);
+		hyphenLabel.setForeground(Color.WHITE);
+		hyphenLabel.setForeground(Color.WHITE);
+
+
 
 		amComboBox=new JComboBox<String>();
 		for(int i = 1; i <= 24; i++) {
@@ -111,8 +130,8 @@ public class Page2 extends JFrame{
 				amComboBox.addItem(String.valueOf(i) + " PM");
 			}
 		}
-		amComboBox.setBounds(300,250,75,20);
-		amComboBox.setBackground(new Color(245,255,250));
+		amComboBox.setBounds(300,300,75,20);
+		amComboBox.setBackground(new Color(205,255,250));
 
 		pmComboBox=new JComboBox<String>();
 		for(int i = 1; i <= 24; i++) {
@@ -122,62 +141,68 @@ public class Page2 extends JFrame{
 				pmComboBox.addItem(String.valueOf(i) + " PM");
 			}
 		}
-		pmComboBox.setBounds(450,250,75,20);
-		pmComboBox.setBackground(new Color(245,255,250));
+		pmComboBox.setBounds(450,300,75,20);
+		pmComboBox.setBackground(new Color(205,255,250));
 
 		venueLabel=new JLabel("Venue");
-		venueLabel.setBounds(60,290,70,20); 
+		venueLabel.setBounds(60,340,70,20); 
 		venueLabel.setFont(new Font("Arial",Font.BOLD,14));
+		venueLabel.setForeground(Color.WHITE);
 
-		venueAddressArea=new HintTextArea("Enter the Venue address");
+
+		//	venueAddressArea=new HintTextArea("Enter the Venue address");
+		venueAddressArea=new JTextArea("Enter the Venue address");
 		venueAddressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		venueAddressArea.setBounds(300,290,300,75);
-		venueAddressArea.setBackground(new Color(245,255,250));
+		venueAddressArea.setBounds(300,340,300,75);
+		venueAddressArea.setBackground(new Color(205,255,250));
 
 		scaleLabel=new JLabel("Scale of Event");
-		scaleLabel.setBounds(60,390,150,20); 
+		scaleLabel.setBounds(60,440,150,20); 
 		scaleLabel.setFont(new Font("Arial",Font.BOLD,14));
+		scaleLabel.setForeground(Color.WHITE);
 
 		scaleComboBox=new JComboBox<String>();
 		scaleComboBox.addItem("Select");
 		scaleComboBox.addItem("Small Scale");
 		scaleComboBox.addItem("Medium Scale");
 		scaleComboBox.addItem("Large Scale");
-		scaleComboBox.setBounds(300,390,150,20);
-		scaleComboBox.setBackground(new Color(245,255,250));
+		scaleComboBox.setBounds(300,440,100,20);
+		scaleComboBox.setBackground(new Color(205,255,250));
 
 		averageNoLabel=new JLabel("Average number of people");
-		averageNoLabel.setBounds(60,430,250,20); 
+		averageNoLabel.setBounds(60,480,200,20); 
 		averageNoLabel.setFont(new Font("Arial",Font.BOLD,14));
+		averageNoLabel.setForeground(Color.WHITE);
 
 		averageNoField=new JTextField(60);
 		averageNoField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		averageNoField.setBounds(300,430,100,20);
-		averageNoField.setBackground(new Color(245,255,250));
+		averageNoField.setBounds(300,480,100,20);
+		averageNoField.setBackground(new Color(205,255,250));
 
 		budgetLabel=new JLabel("Budget range:(Rs)");
-		budgetLabel.setBounds(60,470,160,20);  
+		budgetLabel.setBounds(60,520,140,20);  
 		budgetLabel.setFont(new Font("Arial",Font.BOLD,14));
+		budgetLabel.setForeground(Color.WHITE);
 
 		budgetField=new JTextField(30);
 		budgetField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		budgetField.setBounds(300,470,70,20);
-		budgetField.setBackground(new Color(245,255,250));
+		budgetField.setBounds(300,520,70,20);
+		budgetField.setBackground(new Color(205,255,250));
 
 		toRsLabel=new JLabel(" to ");
-		toRsLabel.setBounds(380,470,60,20);
+		toRsLabel.setBounds(380,520,60,20);
+		toRsLabel.setForeground(Color.WHITE);
 		toRsLabel.setFont(new Font("Arial",Font.BOLD,14));
 
 		toRsField=new JTextField(30);
 		toRsField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		toRsField.setBounds(420,470,70,20);
-		toRsField.setBackground(new Color(245,255,250));
+		toRsField.setBounds(420,520,70,20);
+		toRsField.setBackground(new Color(205,255,250));
 
 		cursor=new Cursor(Cursor.HAND_CURSOR);
-
 		nextButton=new JButton("Next");
-		nextButton.setBounds(370, 550, 170, 23);
-		nextButton.setBackground(new Color(30,180,255));
+		nextButton.setBounds(370, 570, 170, 23);
+		nextButton.setBackground(new Color(200,240,250));
 		nextButton.setMnemonic('N');
 		nextButton.setToolTipText("Click Here");
 		nextButton.setCursor(cursor);
@@ -188,7 +213,7 @@ public class Page2 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(!isDataValid()) {
+					/*if(!isDataValid()) {
 						errorLabel.setText("Please fill all the fields!");
 						return;
 					}
@@ -221,7 +246,7 @@ public class Page2 extends JFrame{
 					Globals.details.setVenue(venueAddressArea.getText().toString());
 					Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
 					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText().toString()));
-					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
+					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());*/
 					frame.dispose();
 					Page3 page3 = new Page3();
 
@@ -233,6 +258,7 @@ public class Page2 extends JFrame{
 			}
 		});
 
+		panel.add(labelimg);
 		panel.add(nameLabel);
 		panel.add(nameField);
 		panel.add(addressLabel);
@@ -262,7 +288,7 @@ public class Page2 extends JFrame{
 		panel.add(venueAddressArea);
 		panel.add(errorLabel);
 
-		panel.setBackground(new Color(153,255,255));
+		panel.setBackground(new Color(100,130,230));
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -283,25 +309,25 @@ public class Page2 extends JFrame{
 		}	
 		return true;
 	}
-	
+
 	private boolean isPhoneValid() {
 		if(phoneField.getText().toString().length() < 10) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	private boolean isDataValid() {
 		if(nameField.getText().toString().isEmpty() || typeField.getText().toString().isEmpty() || dateField.getText().toString().isEmpty()
 				|| averageNoField.getText().toString().isEmpty() || addressArea.getText().toString().isEmpty()
 				|| venueAddressArea.getText().toString().isEmpty()
 				|| scaleComboBox.getSelectedItem().toString().equalsIgnoreCase("Select")
 				|| (amComboBox.getSelectedItem().toString().equalsIgnoreCase("1 AM")
-				&& pmComboBox.getSelectedItem().toString().equalsIgnoreCase("1 AM"))) {
+						&& pmComboBox.getSelectedItem().toString().equalsIgnoreCase("1 AM"))) {
 			return false;
 		}
-		
+
 		return true;
 	}
 

@@ -26,59 +26,67 @@ public class Page1 extends JFrame{
 		panel=(JPanel)frame.getContentPane();
 		panel.setLayout(null);
 		
+		JLabel labellogo=new JLabel("");
+		Image Logo=new ImageIcon(this.getClass().getResource("/assets/Logo.jpg")).getImage();
+		labellogo.setIcon(new ImageIcon(Logo));
+		labellogo.setBounds(470,10,340,140);
+		
 		JLabel labelImg2=new JLabel("");
 		Image img2=new ImageIcon(this.getClass().getResource("/assets/img2.jpg")).getImage();
 		labelImg2.setIcon(new ImageIcon(img2));
-		labelImg2.setBounds(100,50,226,150);
+		labelImg2.setBounds(100,160,226,150);
 		
 		JLabel labelImg3=new JLabel("");
 		Image img3=new ImageIcon(this.getClass().getResource("/assets/img4.jpg")).getImage();
 		labelImg3.setIcon(new ImageIcon(img3));
-		labelImg3.setBounds(370,50,226,150);
+		labelImg3.setBounds(370,160,226,150);
 		
 		JLabel labelImg4=new JLabel("");
 		Image img4=new ImageIcon(this.getClass().getResource("/assets/img5.jpg")).getImage();
 		labelImg4.setIcon(new ImageIcon(img4));
-		labelImg4.setBounds(650,50,220,150);
+		labelImg4.setBounds(650,160,220,150);
 		
 		JLabel labelImg5=new JLabel("");
 		Image img5=new ImageIcon(this.getClass().getResource("/assets/img7.jpg")).getImage();
 		labelImg5.setIcon(new ImageIcon(img5));
-		labelImg5.setBounds(925,50,225,150);
+		labelImg5.setBounds(925,160,225,150);
 		
 		JLabel labelImg6=new JLabel("");
 		Image img6=new ImageIcon(this.getClass().getResource("/assets/img8.jpg")).getImage();
 		labelImg6.setIcon(new ImageIcon(img6));
-		labelImg6.setBounds(50,250,300,225);
+		labelImg6.setBounds(50,350,300,225);
 		
 		JLabel lblBday=new JLabel("Weddings");
-		lblBday.setBounds(50,500,150,15);
+		lblBday.setBounds(50,580,150,15);
 		lblBday.setFont(new Font("Arial",Font.BOLD,14));
+		lblBday.setForeground(Color.WHITE);
 			
 		JLabel labelImg7=new JLabel("");
 		Image img7=new ImageIcon(this.getClass().getResource("/assets/img3.jpg")).getImage();
 		labelImg7.setIcon(new ImageIcon(img7));
-		labelImg7.setBounds(850,250,300,225);	
+		labelImg7.setBounds(850,350,300,225);	
 		
 		JLabel lblWedding=new JLabel("Birthday Celebration");
-		lblWedding.setBounds(850,500,200,15);
+		lblWedding.setBounds(850,580,200,15);
 		lblWedding.setFont(new Font("Arial",Font.BOLD,14));
+		lblWedding.setForeground(Color.WHITE);
 		
 		
 		JLabel labelImg8=new JLabel("");
 		Image img8=new ImageIcon(this.getClass().getResource("/assets/img6.jpg")).getImage();
 		labelImg8.setIcon(new ImageIcon(img8));
-		labelImg8.setBounds(450,250,300,225);	
+		labelImg8.setBounds(450,350,300,225);	
 		
 		JLabel lblDance=new JLabel("Classical Events");
-		lblDance.setBounds(450,500,150,15);
+		lblDance.setBounds(450,580,150,15);
 		lblDance.setFont(new Font("Arial",Font.BOLD,14));
+		lblDance.setForeground(Color.WHITE);
 		
 		btnManage = new JButton("Manage my Event");
 		btnManage.setBounds(300, 600, 200, 23);
 		btnManage.setFont(new Font("Arial",Font.BOLD,14));
 		
-		btnManage.setBackground(new Color(30,180,255));
+		btnManage.setBackground(new Color(200,240,250));
 		btnManage.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnManage.setMnemonic('M');
 		panel.setBackground(new Color(153,255,255));
@@ -87,7 +95,7 @@ public class Page1 extends JFrame{
 		btnView.setBounds(700, 600, 170, 23);
 		btnView.setFont(new Font("Arial",Font.BOLD,14));
 		
-		btnView.setBackground(new Color(30,180,255));
+		btnView.setBackground(new Color(200,240,250));
 		btnView.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnView.setMnemonic('V');
 		
@@ -108,9 +116,8 @@ public class Page1 extends JFrame{
 				Globals.page1.dispose();
 			}
 		});
-		
-		panel.setBackground(new Color(153,255,255));
-		
+				
+		panel.add(labellogo);
 		panel.add(labelImg2);
 		panel.add(labelImg3);
 		panel.add(labelImg4);
@@ -125,6 +132,8 @@ public class Page1 extends JFrame{
 		panel.add(btnView);
 		
 		SQLHelper.connect();
+		
+		panel.setBackground(new Color(100,130,230));
 		frame.setVisible(true);
 		
 	}

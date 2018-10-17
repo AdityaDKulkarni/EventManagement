@@ -47,16 +47,24 @@ class Page4 implements ActionListener
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		JLabel labelimg=new JLabel("");
+		Image pic=new ImageIcon(this.getClass().getResource("/assets/p11.jpg")).getImage();
+		labelimg.setIcon(new ImageIcon(pic));
+		labelimg.setBounds(760,20,480,640);
+		frame.getContentPane().add(labelimg);
+		
 		JLabel lblDetailsOfEvent = new JLabel("Extra requirements");
 		lblDetailsOfEvent.setBounds(316, 22, 230, 14);
 		lblDetailsOfEvent.setFont(new Font("Arial",Font.BOLD,18));
+		lblDetailsOfEvent.setForeground(Color.WHITE);
 		frame.add(lblDetailsOfEvent);
 
 		chckbxDance = new JCheckBox("Dance");
 		chckbxDance.setBounds(51, 94, 90, 23);
 		chckbxDance.setFont(new Font("Arial",Font.BOLD,14));
+		chckbxDance.setForeground(Color.WHITE);
+		chckbxDance.setBackground(new Color(100,130,230));
 		frame.getContentPane().add(chckbxDance);
-		chckbxDance.setBackground(new Color(215,255,230));
 
 		comboBoxDance = new JComboBox<String>();
 		comboBoxDance.setBounds(160, 94, 142, 23);
@@ -73,8 +81,9 @@ class Page4 implements ActionListener
 		chckbxSkit = new JCheckBox("Skit");
 		chckbxSkit.setBounds(51, 140, 90, 23);
 		chckbxSkit.setFont(new Font("Arial",Font.BOLD,14));
+		chckbxSkit.setForeground(Color.WHITE);
+		chckbxSkit.setBackground(new Color(100,130,230));
 		frame.getContentPane().add(chckbxSkit);
-		chckbxSkit.setBackground(new Color(215,255,230));
 
 		comboBoxSkit = new JComboBox<String>();
 		comboBoxSkit.setBounds(160, 140, 142, 23);
@@ -89,8 +98,9 @@ class Page4 implements ActionListener
 		chckbxMusic = new JCheckBox("Music");
 		chckbxMusic.setBounds(51,190, 90, 23);
 		chckbxMusic.setFont(new Font("Arial",Font.BOLD,14));
+		chckbxMusic.setForeground(Color.WHITE);
+		chckbxMusic.setBackground(new Color(100,130,230));
 		frame.getContentPane().add(chckbxMusic);
-		chckbxMusic.setBackground(new Color(215,255,230));
 
 
 		comboBoxMusic = new JComboBox<String>();
@@ -105,6 +115,7 @@ class Page4 implements ActionListener
 		JLabel lblCelebrityAppointment = new JLabel("Celebrity Preferred:");
 		lblCelebrityAppointment.setBounds(51, 340, 190, 14);
 		lblCelebrityAppointment.setFont(new Font("Arial",Font.BOLD,14));
+		lblCelebrityAppointment.setForeground(Color.WHITE);
 		frame.getContentPane().add(lblCelebrityAppointment);
 
 		textFieldCeleb = new JTextField();
@@ -118,6 +129,7 @@ class Page4 implements ActionListener
 		JLabel lblEArrangements = new JLabel("Any extra arrangements needed:");
 		lblEArrangements.setBounds(51, 390, 270, 20);
 		lblEArrangements.setFont(new Font("Arial",Font.BOLD,14));
+		lblEArrangements.setForeground(Color.WHITE);
 		frame.getContentPane().add( lblEArrangements);
 
 		JTextArea textAreaEArrangement = new JTextArea();
@@ -132,21 +144,23 @@ class Page4 implements ActionListener
 		JCheckBox chckbxVideoPresentation = new JCheckBox("Video Presentation");
 		chckbxVideoPresentation.setBounds(51, 240, 190, 23);
 		chckbxVideoPresentation.setFont(new Font("Arial",Font.BOLD,14));
+		chckbxVideoPresentation.setForeground(Color.WHITE);
+		chckbxVideoPresentation.setBackground(new Color(100,130,230));
 		frame.getContentPane().add(chckbxVideoPresentation);
-		chckbxVideoPresentation.setBackground(new Color(215,255,230));
 
 		JCheckBox chckbxPhotographer = new JCheckBox("Photographer");
 		chckbxPhotographer.setBounds(51, 290, 140, 23);
 		chckbxPhotographer.setFont(new Font("Arial",Font.BOLD,14));
+		chckbxPhotographer.setForeground(Color.WHITE);
+		chckbxPhotographer.setBackground(new Color(100,130,230));
 		frame.getContentPane().add(chckbxPhotographer);
-		chckbxPhotographer.setBackground(new Color(215,255,230));
 
 
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(117, 600, 100, 23);
 		btnSubmit.setFont(new Font("Arial",Font.BOLD,14));
 		frame.getContentPane().add(btnSubmit);
-		btnSubmit.setBackground(new Color(30,180,255));
+		btnSubmit.setBackground(new Color(200,240,250));
 		btnSubmit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSubmit.setMnemonic('F');
 		btnSubmit.addActionListener(this);
@@ -155,7 +169,7 @@ class Page4 implements ActionListener
 		btnQuit.setBounds(269, 600, 89, 23);
 		btnQuit.setFont(new Font("Arial",Font.BOLD,14));
 		frame.getContentPane().add(btnQuit);
-		btnQuit.setBackground(new Color(30,180,255));
+		btnQuit.setBackground(new Color(200,240,250));
 		btnQuit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnQuit.setMnemonic('Q');
 		btnQuit.addActionListener(new ActionListener() {
@@ -170,7 +184,7 @@ class Page4 implements ActionListener
 		btnViewSummaryOf.setBounds(425, 600, 260, 23);
 		btnViewSummaryOf.setFont(new Font("Arial",Font.BOLD,14));
 		frame.getContentPane().add(btnViewSummaryOf);
-		btnViewSummaryOf.setBackground(new Color(30,180,255));
+		btnViewSummaryOf.setBackground(new Color(200,240,250));
 		btnViewSummaryOf.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnViewSummaryOf.setMnemonic('V');
 
@@ -240,7 +254,7 @@ class Page4 implements ActionListener
 		});
 
 
-		p1.setBackground(new Color(153,255,255));
+		p1.setBackground(new Color(100,130,230));
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -308,7 +322,7 @@ class Page4 implements ActionListener
 			pdfTable.addCell(String.valueOf(Globals.details.getAgeGroup()));
 			
 			pdfTable.addCell("Food preference");
-			pdfTable.addCell(Globals.details.getPhone());
+			pdfTable.addCell(Globals.details.getFoodPreference());
 			
 			pdfTable.addCell("Menu");
 			pdfTable.addCell(Globals.details.getFoodPreference());
