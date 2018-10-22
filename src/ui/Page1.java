@@ -1,29 +1,32 @@
 package ui;
-import javax.swing.*;
-import assets.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import global.Globals;
 import sql.SQLHelper;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
 
 public class Page1 extends JFrame{
-	
-	JFrame frame; 
+	 
 	JPanel panel;  
 	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblBday,lblDance,lblWedding;
     JButton btnManage, btnView;
 	
     public Page1(){
-	    frame=new JFrame("Gallery");
 		makeFrameFullSize();
-		panel=(JPanel)frame.getContentPane();
+		panel=(JPanel)getContentPane();
 		panel.setLayout(null);
 		
 		JLabel labellogo=new JLabel("");
@@ -83,18 +86,15 @@ public class Page1 extends JFrame{
 		lblDance.setForeground(Color.WHITE);
 		
 		btnManage = new JButton("Manage my Event");
-		btnManage.setBounds(300, 600, 200, 23);
+		btnManage.setBounds(300, 630, 200, 23);
 		btnManage.setFont(new Font("Arial",Font.BOLD,14));
-		
 		btnManage.setBackground(new Color(200,240,250));
 		btnManage.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnManage.setMnemonic('M');
-		panel.setBackground(new Color(153,255,255));
 		
 		btnView = new JButton("View Records");
-		btnView.setBounds(700, 600, 170, 23);
+		btnView.setBounds(700, 630, 170, 23);
 		btnView.setFont(new Font("Arial",Font.BOLD,14));
-		
 		btnView.setBackground(new Color(200,240,250));
 		btnView.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnView.setMnemonic('V');
@@ -104,7 +104,7 @@ public class Page1 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Page2 pg2 = new Page2();
-				frame.dispose();
+				dispose();
 			}
 		});
 		
@@ -134,13 +134,13 @@ public class Page1 extends JFrame{
 		SQLHelper.connect();
 		
 		panel.setBackground(new Color(100,130,230));
-		frame.setVisible(true);
+		setVisible(true);
 		
 	}
 	
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height);
+		setSize(screenSize.width, screenSize.height);
 	}
 
 	public static void main(String a[]){

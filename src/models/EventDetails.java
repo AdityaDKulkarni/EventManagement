@@ -1,8 +1,6 @@
 package models;
 
-import java.io.Serializable;
-
-public class EventDetails implements Serializable{
+public class EventDetails{
 	private String typeOfEvent, date, startTime, endTime, address,venue, scale, budget,
 	phone, name, email, purpose, plateBudget, foodPreference, menu, celebrity, arrangements;
 	private int avgNoOfPeople, eventId, ageGroup;

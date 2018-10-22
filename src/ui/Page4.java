@@ -1,34 +1,40 @@
 package ui;
 
-import javax.swing.*;
-import javax.swing.border.Border;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
-import com.itextpdf.text.pdf.PdfChunk;
-import com.itextpdf.text.pdf.PdfFileSpecification;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.collection.PdfTargetDictionary;
 
 import global.Globals;
 import sql.SQLHelper;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.FileOutputStream;
-
-class Page4 implements ActionListener
-{
-	private JFrame frame;
+class Page4 extends JFrame implements ActionListener{
 	private JTextField textFieldCeleb;
-	private JTextField textFieldAmount,textFieldDance,textFieldSLang ,textFieldMLang ;
 	private JComboBox<String> comboBoxDance, comboBoxSkit, comboBoxMusic;
 	private JCheckBox chckbxDance, chckbxMusic, chckbxSkit;
 	JButton btnEnd,btnQuit,btnViewSummaryOf;
@@ -37,34 +43,32 @@ class Page4 implements ActionListener
 
 	Page4(){
 
-		frame = new JFrame("Event Details");
-
 		makeFrameFullSize();
-		p1=(JPanel)frame.getContentPane();
+		p1=(JPanel)getContentPane();
 		p1.setLayout(null);
 
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		p1.setLayout(null);
 
 		JLabel labelimg=new JLabel("");
 		Image pic=new ImageIcon(this.getClass().getResource("/assets/p11.jpg")).getImage();
 		labelimg.setIcon(new ImageIcon(pic));
 		labelimg.setBounds(760,20,480,640);
-		frame.getContentPane().add(labelimg);
+		p1.add(labelimg);
 		
 		JLabel lblDetailsOfEvent = new JLabel("Extra requirements");
 		lblDetailsOfEvent.setBounds(316, 22, 230, 14);
 		lblDetailsOfEvent.setFont(new Font("Arial",Font.BOLD,18));
 		lblDetailsOfEvent.setForeground(Color.WHITE);
-		frame.add(lblDetailsOfEvent);
+		add(lblDetailsOfEvent);
 
 		chckbxDance = new JCheckBox("Dance");
 		chckbxDance.setBounds(51, 94, 90, 23);
 		chckbxDance.setFont(new Font("Arial",Font.BOLD,14));
 		chckbxDance.setForeground(Color.WHITE);
 		chckbxDance.setBackground(new Color(100,130,230));
-		frame.getContentPane().add(chckbxDance);
+		p1.add(chckbxDance);
 
 		comboBoxDance = new JComboBox<String>();
 		comboBoxDance.setBounds(160, 94, 142, 23);
@@ -72,8 +76,7 @@ class Page4 implements ActionListener
 		comboBoxDance.addItem("Bollywood");
 		comboBoxDance.addItem("Folk");
 		comboBoxDance.addItem("Western");
-		comboBoxDance.setBackground(new Color(215,255,230));
-		frame.getContentPane().add(comboBoxDance);
+		p1.add(comboBoxDance);
 
 
 
@@ -83,15 +86,14 @@ class Page4 implements ActionListener
 		chckbxSkit.setFont(new Font("Arial",Font.BOLD,14));
 		chckbxSkit.setForeground(Color.WHITE);
 		chckbxSkit.setBackground(new Color(100,130,230));
-		frame.getContentPane().add(chckbxSkit);
+		p1.add(chckbxSkit);
 
 		comboBoxSkit = new JComboBox<String>();
 		comboBoxSkit.setBounds(160, 140, 142, 23);
 		comboBoxSkit.addItem("Mimicry");
 		comboBoxSkit.addItem("Funny");
 		comboBoxSkit.addItem("Social Awareness");
-		comboBoxSkit.setBackground(new Color(215,255,230));
-		frame.getContentPane().add(comboBoxSkit);
+		p1.add(comboBoxSkit);
 
 
 
@@ -100,7 +102,7 @@ class Page4 implements ActionListener
 		chckbxMusic.setFont(new Font("Arial",Font.BOLD,14));
 		chckbxMusic.setForeground(Color.WHITE);
 		chckbxMusic.setBackground(new Color(100,130,230));
-		frame.getContentPane().add(chckbxMusic);
+		p1.add(chckbxMusic);
 
 
 		comboBoxMusic = new JComboBox<String>();
@@ -109,36 +111,36 @@ class Page4 implements ActionListener
 		comboBoxMusic.addItem("Orchestra");
 		comboBoxMusic.addItem("Instrumental");
 		comboBoxMusic.setBackground(new Color(215,255,230));
-		frame.getContentPane().add(comboBoxMusic);
+		p1.add(comboBoxMusic);
 
 
 		JLabel lblCelebrityAppointment = new JLabel("Celebrity Preferred:");
 		lblCelebrityAppointment.setBounds(51, 340, 190, 14);
 		lblCelebrityAppointment.setFont(new Font("Arial",Font.BOLD,14));
 		lblCelebrityAppointment.setForeground(Color.WHITE);
-		frame.getContentPane().add(lblCelebrityAppointment);
+		p1.add(lblCelebrityAppointment);
 
 		textFieldCeleb = new JTextField();
 		textFieldCeleb.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		textFieldCeleb.setBounds(360, 340, 200, 20);
-		frame.getContentPane().add(textFieldCeleb);
+		p1.add(textFieldCeleb);
 		textFieldCeleb.setColumns(10);
-		textFieldCeleb.setBackground(new Color(245,255,250));
+		textFieldCeleb.setBackground(new Color(205,255,250));
 
 
 		JLabel lblEArrangements = new JLabel("Any extra arrangements needed:");
 		lblEArrangements.setBounds(51, 390, 270, 20);
 		lblEArrangements.setFont(new Font("Arial",Font.BOLD,14));
 		lblEArrangements.setForeground(Color.WHITE);
-		frame.getContentPane().add( lblEArrangements);
+		p1.add( lblEArrangements);
 
 		JTextArea textAreaEArrangement = new JTextArea();
 		textAreaEArrangement.setColumns(6);
 		textAreaEArrangement.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		textAreaEArrangement.setRows(4);
 		textAreaEArrangement.setBounds(360, 390, 300, 53);
-		frame.getContentPane().add(textAreaEArrangement);
-		textAreaEArrangement.setBackground(new Color(245,255,250));
+		p1.add(textAreaEArrangement);
+		textAreaEArrangement.setBackground(new Color(205,255,250));
 
 
 		JCheckBox chckbxVideoPresentation = new JCheckBox("Video Presentation");
@@ -146,20 +148,20 @@ class Page4 implements ActionListener
 		chckbxVideoPresentation.setFont(new Font("Arial",Font.BOLD,14));
 		chckbxVideoPresentation.setForeground(Color.WHITE);
 		chckbxVideoPresentation.setBackground(new Color(100,130,230));
-		frame.getContentPane().add(chckbxVideoPresentation);
+		p1.add(chckbxVideoPresentation);
 
 		JCheckBox chckbxPhotographer = new JCheckBox("Photographer");
 		chckbxPhotographer.setBounds(51, 290, 140, 23);
 		chckbxPhotographer.setFont(new Font("Arial",Font.BOLD,14));
 		chckbxPhotographer.setForeground(Color.WHITE);
 		chckbxPhotographer.setBackground(new Color(100,130,230));
-		frame.getContentPane().add(chckbxPhotographer);
+		p1.add(chckbxPhotographer);
 
 
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(117, 600, 100, 23);
 		btnSubmit.setFont(new Font("Arial",Font.BOLD,14));
-		frame.getContentPane().add(btnSubmit);
+		p1.add(btnSubmit);
 		btnSubmit.setBackground(new Color(200,240,250));
 		btnSubmit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSubmit.setMnemonic('F');
@@ -168,7 +170,7 @@ class Page4 implements ActionListener
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.setBounds(269, 600, 89, 23);
 		btnQuit.setFont(new Font("Arial",Font.BOLD,14));
-		frame.getContentPane().add(btnQuit);
+		p1.add(btnQuit);
 		btnQuit.setBackground(new Color(200,240,250));
 		btnQuit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnQuit.setMnemonic('Q');
@@ -176,14 +178,14 @@ class Page4 implements ActionListener
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				dispose();
 			}
 		});
 
 		JButton btnViewSummaryOf = new JButton("View summary of my event");
 		btnViewSummaryOf.setBounds(425, 600, 260, 23);
 		btnViewSummaryOf.setFont(new Font("Arial",Font.BOLD,14));
-		frame.getContentPane().add(btnViewSummaryOf);
+		p1.add(btnViewSummaryOf);
 		btnViewSummaryOf.setBackground(new Color(200,240,250));
 		btnViewSummaryOf.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnViewSummaryOf.setMnemonic('V');
@@ -196,7 +198,7 @@ class Page4 implements ActionListener
 					if(chckbxDance.isSelected()) {
 						extras += chckbxDance.getLabel() + "(" + comboBoxDance.getSelectedItem().toString() + "),";
 					}
-					if(chckbxSkit.isSelected()) {
+					if(chckbxSkit.isSelected())	 {
 						extras += chckbxSkit.getLabel() + "(" + comboBoxSkit.getSelectedItem().toString() + "),";
 					}
 					if(chckbxMusic.isSelected()) {
@@ -229,6 +231,10 @@ class Page4 implements ActionListener
 
 						SQLHelper.insertEntertainment(Globals.details.getEventId(), extras,
 								Globals.details.getCelebrity(), Globals.details.getArrangements());
+						
+						JOptionPane.showMessageDialog(Page4.this, "Event created successfuly.");
+					}else {
+						JOptionPane.showMessageDialog(Page4.this, "Something went wrong!");
 					}
 				}catch(Exception e1) {
 					e1.printStackTrace();
@@ -255,13 +261,7 @@ class Page4 implements ActionListener
 
 
 		p1.setBackground(new Color(100,130,230));
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		frame.setVisible(true);
+		setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent ae){
@@ -272,13 +272,13 @@ class Page4 implements ActionListener
 
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height);
+		setSize(screenSize.width, screenSize.height);
 	}
 
 	private void writePDF() {
 		try {
 			Document document = new Document(PageSize.A4, 50, 50, 50, 50);
-			PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream("/home/aditya/Desktop/Records.pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream("/home/aditya/Desktop/Records.pdf"));
 			document.open();
 			Paragraph title1 = new Paragraph("");
 			Chapter chapter1 = new Chapter(title1, 1);
@@ -336,8 +336,10 @@ class Page4 implements ActionListener
 			section1.add(pdfTable);
 			document.add(chapter1);
 			document.close();
+			JOptionPane.showMessageDialog(Page4.this, "The PDF document has beed exported to desktop.");
 		}catch(Exception e1) {
 			e1.printStackTrace();
+			JOptionPane.showMessageDialog(Page4.this, "There was a problem exporting the PDF.");
 		}
 	}
 

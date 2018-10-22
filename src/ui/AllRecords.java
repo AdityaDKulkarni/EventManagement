@@ -1,18 +1,27 @@
 package ui;
 
-import javax.swing.*;
-
-import global.Globals;
-import models.EventDetails;
-import sql.SQLHelper;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import global.Globals;
+import sql.SQLHelper;
 
 public class AllRecords extends JFrame{
 
@@ -21,20 +30,18 @@ public class AllRecords extends JFrame{
 	JTextField tfname,tfcause,tfbudgetplate,tfdate,tftime,tftotalbudget;
 	JTextArea tfentertainment;
 	JTextArea tfvenue;
-	JFrame frame;
 	JPanel panel;
 	JButton btnBack, btnSearch;
 	ResultSet set;
 
 	AllRecords(){
-		frame=new JFrame("SHOW ALL ADDED RECORDS");
 		makeFrameFullSize();
-		panel=(JPanel)frame.getContentPane();
+		panel=(JPanel)getContentPane();
 		panel.setLayout(null);
 
 		records=new JComboBox<String>();
 		records.setFont(new Font("Arial",Font.PLAIN,14));
-		records.setBounds(70,100,150,20);
+		records.setBounds(70,100,180,20);
 
 		try {
 			set = SQLHelper.getCustomerList();
@@ -65,9 +72,9 @@ public class AllRecords extends JFrame{
 		tfname=new JTextField(60);
 		tfname.setBounds(600,70,230,20);
 		tfname.setEditable(false);
+		tfname.setBackground(new Color(205,255,250));
 		tfname.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		tfname.setFont(new Font("Arial",Font.BOLD,14));
-		tfname.setBackground(new Color(245,255,250));
+		tfname.setFont(new Font("Arial",Font.PLAIN,14));
 
 		Cause=new JLabel("Cause of Event");
 		Cause.setFont(new Font("Arial",Font.BOLD,14));
@@ -77,9 +84,9 @@ public class AllRecords extends JFrame{
 		tfcause=new JTextField(60);
 		tfcause.setBounds(600,110,230,20);
 		tfcause.setEditable(false);
+		tfcause.setBackground(new Color(205,255,250));
 		tfcause.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		tfcause.setFont(new Font("Arial",Font.BOLD,14));
-		tfcause.setBackground(new Color(245,255,250));
+		tfcause.setFont(new Font("Arial",Font.PLAIN,14));
 
 		venue=new JLabel("Venue of Event");
 		venue.setFont(new Font("Arial",Font.BOLD,14));
@@ -90,8 +97,8 @@ public class AllRecords extends JFrame{
 		tfvenue.setBounds(600,150,230,120);
 		tfvenue.setEditable(false);
 		tfvenue.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		tfvenue.setFont(new Font("Arial",Font.BOLD,14));
-		tfvenue.setBackground(new Color(245,255,250));
+		tfvenue.setFont(new Font("Arial",Font.PLAIN,14));
+		tfvenue.setBackground(new Color(205,255,250));
 
 		date=new JLabel("Date of Event");
 		date.setFont(new Font("Arial",Font.BOLD,14));
@@ -102,8 +109,8 @@ public class AllRecords extends JFrame{
 		tfdate.setBounds(600,300,230,20);
 		tfdate.setEditable(false);
 		tfdate.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		tfdate.setFont(new Font("Arial",Font.BOLD,14));
-		tfdate.setBackground(new Color(245,255,250));
+		tfdate.setFont(new Font("Arial",Font.PLAIN,14));
+		tfdate.setBackground(new Color(205,255,250));
 
 		time=new JLabel("Time of Event");
 		time.setFont(new Font("Arial",Font.BOLD,14));
@@ -114,8 +121,8 @@ public class AllRecords extends JFrame{
 		tftime.setBounds(600,340,230,20);
 		tftime.setEditable(false);
 		tftime.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		tftime.setFont(new Font("Arial",Font.BOLD,14));
-		tftime.setBackground(new Color(245,255,250));
+		tftime.setFont(new Font("Arial",Font.PLAIN,14));
+		tftime.setBackground(new Color(205,255,250));
 
 		budgetplate=new JLabel("Budged per plate");
 		budgetplate.setFont(new Font("Arial",Font.BOLD,14));
@@ -126,8 +133,8 @@ public class AllRecords extends JFrame{
 		tfbudgetplate.setEditable(false);
 		tfbudgetplate.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tfbudgetplate.setBounds(600,420,230,20);
-		tfbudgetplate.setFont(new Font("Arial",Font.BOLD,14));
-		tfbudgetplate.setBackground(new Color(245,255,250));
+		tfbudgetplate.setFont(new Font("Arial",Font.PLAIN,14));
+		tfbudgetplate.setBackground(new Color(205,255,250));
 
 		totalbudget=new JLabel("Total Budget");
 		totalbudget.setFont(new Font("Arial",Font.BOLD,14));
@@ -138,8 +145,8 @@ public class AllRecords extends JFrame{
 		tftotalbudget.setEditable(false);
 		tftotalbudget.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tftotalbudget.setBounds(600,380,230,20);
-		tftotalbudget.setFont(new Font("Arial",Font.BOLD,14));
-		tftotalbudget.setBackground(new Color(245,255,250));
+		tftotalbudget.setFont(new Font("Arial",Font.PLAIN,14));
+		tftotalbudget.setBackground(new Color(205,255,250));
 
 		entertainment=new JLabel("Entertainment");
 		entertainment.setFont(new Font("Arial",Font.BOLD,14));
@@ -150,8 +157,8 @@ public class AllRecords extends JFrame{
 		tfentertainment.setEditable(false);
 		tfentertainment.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tfentertainment.setBounds(600,460,430,70);
-		tfentertainment.setFont(new Font("Arial",Font.BOLD,14));
-		tfentertainment.setBackground(new Color(245,255,250));
+		tfentertainment.setFont(new Font("Arial",Font.PLAIN,14));
+		tfentertainment.setBackground(new Color(205,255,250));
 
 		btnBack=new JButton("Back");
 		btnBack.setMnemonic('B');
@@ -164,8 +171,8 @@ public class AllRecords extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				frame.disable();
+				dispose();
+				disable();
 				Globals.page1.setVisible(true);
 			}
 		});
@@ -173,7 +180,7 @@ public class AllRecords extends JFrame{
 		btnSearch = new JButton("Search");
 		btnSearch.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSearch.setFont(new Font("Arial",Font.BOLD,14));
-		btnSearch.setBounds(70,150,150,20);
+		btnSearch.setBounds(70,150,180,20);
 		btnSearch.setBackground(new Color(200,240,250));
 
 		btnSearch.addActionListener(new ActionListener() {
@@ -222,14 +229,14 @@ public class AllRecords extends JFrame{
 		panel.add(btnSearch);
 
 		panel.setBackground(new Color(100,130,230));
-		frame.setVisible(true);
+		setVisible(true);
 
 	}
 
 
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height);
+		setSize(screenSize.width, screenSize.height);
 	}
 
 }

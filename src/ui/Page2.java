@@ -1,24 +1,33 @@
 package ui;
 
-import javax.swing.*;
-
-import com.itextpdf.text.Document;
-
-import custom.HintTextArea;
-import custom.HintTextField;
-import global.Globals;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Page2 extends JFrame{
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-	JFrame frame; 
+import custom.HintTextArea;
+import custom.HintTextField;
+import global.Globals;
+
+public class Page2 extends JFrame{
+ 
 	JTextField nameField,phoneField,emailField,typeField,dateField,averageNoField,budgetField,toRsField;
 	JButton nextButton;
 	JTextArea addressArea,venueAddressArea;  
@@ -31,9 +40,8 @@ public class Page2 extends JFrame{
 	int eventId;
 	public Page2(){
 
-		frame=new JFrame("Event Details");
 		makeFrameFullSize();
-		panel=(JPanel)frame.getContentPane();
+		panel=(JPanel)getContentPane();
 		panel.setLayout(null);
 
 		JLabel labelimg=new JLabel("");
@@ -67,7 +75,8 @@ public class Page2 extends JFrame{
 		phoneLabel.setFont(new Font("Arial",Font.BOLD,14));
 		phoneLabel.setForeground(Color.WHITE);
 
-		phoneField=new JTextField(30);
+		phoneField=new JTextField(10);
+		phoneField.setColumns(10);
 		phoneField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		phoneField.setBounds(300,140,150,20);
 		phoneField.setBackground(new Color(205,255,250));
@@ -97,8 +106,7 @@ public class Page2 extends JFrame{
 		dateLabel.setFont(new Font("Arial",Font.BOLD,14));
 		dateLabel.setForeground(Color.WHITE);
 
-		dateField = new JTextField("YYYY-MM-DD");
-		//	dateField = new HintTextField("YYYY-MM-DD");
+		dateField = new HintTextField("YYYY-MM-DD");
 		dateField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		dateField.setBounds(300,260,100,20);
 		dateField.setBackground(new Color(205,255,250));
@@ -120,29 +128,21 @@ public class Page2 extends JFrame{
 		hyphenLabel.setForeground(Color.WHITE);
 		hyphenLabel.setForeground(Color.WHITE);
 
-
+		pmComboBox=new JComboBox<String>();
+		pmComboBox.setBounds(450,300,75,20);
 
 		amComboBox=new JComboBox<String>();
+		amComboBox.setBounds(300,300,75,20);
 		for(int i = 1; i <= 24; i++) {
 			if(i < 12) {
 				amComboBox.addItem(String.valueOf(i) + " AM");
-			}else {
-				amComboBox.addItem(String.valueOf(i) + " PM");
-			}
-		}
-		amComboBox.setBounds(300,300,75,20);
-		amComboBox.setBackground(new Color(205,255,250));
-
-		pmComboBox=new JComboBox<String>();
-		for(int i = 1; i <= 24; i++) {
-			if(i < 12) {
 				pmComboBox.addItem(String.valueOf(i) + " AM");
-			}else {
+			}else{
+				amComboBox.addItem(String.valueOf(i) + " PM");
 				pmComboBox.addItem(String.valueOf(i) + " PM");
 			}
 		}
-		pmComboBox.setBounds(450,300,75,20);
-		pmComboBox.setBackground(new Color(205,255,250));
+
 
 		venueLabel=new JLabel("Venue");
 		venueLabel.setBounds(60,340,70,20); 
@@ -150,8 +150,7 @@ public class Page2 extends JFrame{
 		venueLabel.setForeground(Color.WHITE);
 
 
-		//	venueAddressArea=new HintTextArea("Enter the Venue address");
-		venueAddressArea=new JTextArea("Enter the Venue address");
+		venueAddressArea=new HintTextArea("Enter the Venue address");
 		venueAddressArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		venueAddressArea.setBounds(300,340,300,75);
 		venueAddressArea.setBackground(new Color(205,255,250));
@@ -167,7 +166,7 @@ public class Page2 extends JFrame{
 		scaleComboBox.addItem("Medium Scale");
 		scaleComboBox.addItem("Large Scale");
 		scaleComboBox.setBounds(300,440,100,20);
-		scaleComboBox.setBackground(new Color(205,255,250));
+
 
 		averageNoLabel=new JLabel("Average number of people");
 		averageNoLabel.setBounds(60,480,200,20); 
@@ -213,7 +212,7 @@ public class Page2 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					/*if(!isDataValid()) {
+					if(!isDataValid()) {
 						errorLabel.setText("Please fill all the fields!");
 						return;
 					}
@@ -246,13 +245,13 @@ public class Page2 extends JFrame{
 					Globals.details.setVenue(venueAddressArea.getText().toString());
 					Globals.details.setScale(scaleComboBox.getSelectedItem().toString());
 					Globals.details.setAvgNoOfPeople(Integer.parseInt(averageNoField.getText().toString()));
-					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());*/
-					frame.dispose();
+					Globals.details.setBudget(budgetField.getText().toString() + " - " +  toRsField.getText().toString());
+					dispose();
 					Page3 page3 = new Page3();
 
 				}catch (Exception e1) {
 					errorLabel.setText("Please fill required fields!");
-					frame.dispose();
+					dispose();
 					Page3 page3 = new Page3();
 				}
 			}
@@ -289,13 +288,7 @@ public class Page2 extends JFrame{
 		panel.add(errorLabel);
 
 		panel.setBackground(new Color(100,130,230));
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		frame.setVisible(true);
+		setVisible(true);
 	}
 
 	private boolean isEmailValid(String email) {
@@ -333,7 +326,7 @@ public class Page2 extends JFrame{
 
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height);
+		setSize(screenSize.width, screenSize.height);
 	}
 
 }

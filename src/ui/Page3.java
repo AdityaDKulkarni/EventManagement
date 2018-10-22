@@ -1,17 +1,29 @@
 package ui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 import custom.HintTextArea;
 import global.Globals;
 
 public class Page3 extends JFrame {
 
-	JFrame frame;
 	JPanel panel;  
 	JLabel lblCause,lblAvgAge,lblBudget,lblFoodPrefer,lblMenu,lblExtraItem,lblApproxCost, errorLabel;
 	JTextField tfPurposeCause,tfAge,tfBudget;
@@ -20,15 +32,14 @@ public class Page3 extends JFrame {
 	JButton btnNext;
 
 	public Page3(){
-		frame=new JFrame("Event details");
 		makeFrameFullSize();
-		panel=(JPanel)frame.getContentPane();
+		panel=(JPanel)getContentPane();
 		panel.setLayout(null);
 		
 		JLabel labelimg=new JLabel("");
 		Image pic3=new ImageIcon(this.getClass().getResource("/assets/p3.jpg")).getImage();
 		labelimg.setIcon(new ImageIcon(pic3));
-		labelimg.setBounds(20,10,1230,230);
+		labelimg.setBounds(10,10,1340,230);
 		
 		lblCause=new JLabel("Cause of the event");
 		lblCause.setFont(new Font("Arial",Font.BOLD,14));
@@ -101,7 +112,7 @@ public class Page3 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					/*if(!isDataValid()) {
+					if(!isDataValid()) {
 						errorLabel.setText("Please fill all the fields!");
 						return;
 					}
@@ -111,8 +122,8 @@ public class Page3 extends JFrame {
 					Globals.details.setAgeGroup(Integer.parseInt(tfAge.getText().toString()));
 					Globals.details.setPlateBudget(tfBudget.getText().toString());
 					Globals.details.setFoodPreference(comboFoodPref.getSelectedItem().toString());
-					Globals.details.setMenu(taMenu.getText().toString());*/
-					frame.dispose();
+					Globals.details.setMenu(taMenu.getText().toString());
+					dispose();
 					Page4 name = new Page4();
 				}catch(Exception e1) {
 					e1.printStackTrace();
@@ -140,16 +151,9 @@ public class Page3 extends JFrame {
 		panel.add(lblMenu);
 		panel.add(taMenu);
 		panel.add(btnNext);
-
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
 		
 		panel.setBackground(new Color(100,130,230));
-		frame.setVisible(true);
+		setVisible(true);
 
 	}
 	
@@ -166,8 +170,7 @@ public class Page3 extends JFrame {
 
 	private void makeFrameFullSize(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height);
+		setSize(screenSize.width, screenSize.height);
 	}
-	
 	
 }
